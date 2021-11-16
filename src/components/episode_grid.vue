@@ -57,8 +57,9 @@
               <div class="kc-episode-item__released">
                 <dt>Recorded</dt>
                 <dd>
-                  <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                    Sun 12 April <span class="kl-dt-separator">8:30 am</span></time>
+                  <time class="ko-datetime">
+                    {{episode.releasedUtc | moment("ddd Do MMMM")}} <span
+                      class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
                 </dd>
               </div>
               <div class="kc-episode-item__location">
@@ -107,8 +108,7 @@
         </li>
 
         <li v-if="allEpisodes.pages && allEpisodes.pages.length != allEpisodes.currentPage"
-          class="ko-pagination__next"><a
-            href="#" aria-label="Next page"
+          class="ko-pagination__next"><a href="#" aria-label="Next page"
             @click="onPageChange(allEpisodes.currentPage +1)">Next<span
               class="ku-show-sr">page</span></a></li>
 

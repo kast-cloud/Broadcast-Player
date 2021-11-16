@@ -65,15 +65,15 @@
                   {{episode.title}}
                 </td>
                 <td class="ko-episode-tbl__date">
-                  <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                    Sun 12 April <span class="kl-dt-separator">8:30 am</span>
-                  </time>
+                  <time class="ko-datetime">
+                    {{episode.releasedUtc | moment("ddd Do MMMM")}} <span
+                      class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
                 </td>
                 <td class="ko-episode-tbl__time">
                   <i class="ki-clock"></i> 33 min
                 </td>
                 <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
-                  <i class="ki-headphones"></i><span class="ku-show-sr">false</span>
+                  <i class="ki-headphones"></i><span class="ku-show-sr">{{episode.hasAudio}}</span>
                 </td>
               </tr>
 

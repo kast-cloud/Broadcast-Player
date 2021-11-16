@@ -18,8 +18,9 @@
                     <div class="kc-episode-sum__released">
                       <dt>Recorded</dt>
                       <dd>
-                        <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                          Sun 12 April <span class="kl-dt-separator">8:30 am</span></time>
+                        <time class="ko-datetime">
+                          {{episode.releasedUtc | moment("ddd Do MMMM")}} <span
+                            class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
                       </dd>
                     </div>
                     <div class="kc-episode-sum__author">
@@ -56,6 +57,8 @@
 </template>
 
 <script>
+  import Vue from 'vue';
+  Vue.use(require('vue-moment'));
   export default {
     name: 'EpisodeLatestList',
     computed: {

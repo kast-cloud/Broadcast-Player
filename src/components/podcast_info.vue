@@ -8,10 +8,12 @@
       <div class="kc-podcast-info__author">By {{ podcastInfo.author }}</div>
     </div>
     <div class="kc-podcast-info__cell--dir">
-      <a v-for="item in podcastInfo.podcastDirectories" :key="item.order" v-bind:href="item.url"
-        class="kc-podcast-info__btn--img" v-bind:title="`Listen on ${item.name}`">
-        <img v-bind:src="item.imageUrl" v-bind:alt="`Listen on ${item.name}`">
-        <span class="show-for-sr">Listen on {{item.name}}</span>
+      <a v-for="podcastDirectorie in podcastInfo.podcastDirectories" :key="podcastDirectorie.order"
+        v-bind:href="podcastDirectorie.url" class="kc-podcast-info__btn--img"
+        v-bind:title="`Listen on ${podcastDirectorie.name}`">
+        <img v-bind:src="podcastDirectorie.imageUrl"
+          v-bind:alt="`Listen on ${podcastDirectorie.name}`">
+        <span class="show-for-sr">Listen on {{podcastDirectorie.name}}</span>
       </a>
       <a v-if="podcastInfo.rssUrl" v-bind:href="podcastInfo.rssUrl"
         class="kc-podcast-info__btn kc-podcast-info__btn--rss"
@@ -41,4 +43,5 @@
       this.getBroadcastInfo()
     },
   };
+
 </script>
