@@ -1,0 +1,109 @@
+<template>
+  <div class="kl-episodes__series">
+    <div class="kc-wdg--latest-series">
+      <h2 class="kc-wdg__hdg">Latest series</h2>
+      <article class="kc-series-item">
+        <header class="kc-series-item__hdr">
+          <img v-bind:src="latestSeries.artworkUrlSml" alt="latestSeries.title"
+            class="kc-series-item__img">
+          <div class="kc-series-item__txt">
+            <h1 class="kc-series-item__title">{{latestSeries.title}}</h1>
+            <dl class="ko-keyvalue ko-keyvalue--value-only kc-series-item__info">
+              <div class="kc-series-card__episodes">
+                <dt>Episodes in series</dt>
+                <dd>
+                  <i class="ki-info"></i>
+                  {{latestSeries.totalEpisodes}}
+                  episodes (complete)
+                </dd>
+              </div>
+              <div class="kc-series-card__time">
+                <dt>Total time</dt>
+                <dd>
+                  <i class="ki-clock"></i> 3h 35min
+                </dd>
+              </div>
+              <div class="kc-series-card__done kc-series-card__done--true">
+                <dt>Listened</dt>
+                <dd>
+                  <i class="ki-headphones"></i><span class="ku-show-sr">true</span>
+                </dd>
+              </div>
+            </dl>
+            <p>{{latestSeries.summary}}.</p>
+            <a href="#" class="ko-more">Learn more<i class="ki-chevron-alt-right"></i></a>
+          </div>
+        </header>
+        <div class="kc-series-item__bdy">
+          <table class="ko-episode-tbl">
+            <thead>
+              <tr>
+                <th>
+                  Episode number
+                </th>
+                <th>
+                  Title / Author
+                </th>
+                <th>
+                  Recorded
+                </th>
+                <th>
+                  Duration
+                </th>
+                <th>
+                  Listened
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'">
+                <td class="ko-episode-tbl__num">
+                  {{index}}
+                </td>
+                <td class="ko-episode-tbl__title">
+                  {{episode.title}}
+                </td>
+                <td class="ko-episode-tbl__date">
+                  <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
+                    Sun 12 April <span class="kl-dt-separator">8:30 am</span>
+                  </time>
+                </td>
+                <td class="ko-episode-tbl__time">
+                  <i class="ki-clock"></i> 33 min
+                </td>
+                <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
+                  <i class="ki-headphones"></i><span class="ku-show-sr">false</span>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="kc-series-item__ftr">
+          <a href="#" class="ko-more">View full series <i class="ki-chevron-alt-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'EpisodeLatestSeries',
+    computed: {
+      latestSeries() {
+        return this.$store.getters.latestSeries
+      }
+    },
+    methods: {
+      getLatestSeries() {
+        return this.$store.dispatch('getLatestSeries')
+      },
+
+    },
+    beforeMount() {
+      this.getLatestSeries()
+    },
+  };
+</script>
