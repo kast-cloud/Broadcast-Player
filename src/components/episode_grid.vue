@@ -17,7 +17,9 @@
       </div>
       <div class="kc-search__cell">
         View by:
-        <button class="ko-button ko-button--view-type" type="button" data-toggle="view-options"
+        <button class="ko-button ko-button--view-type" v-on:click="onClickViewByButton()"
+          type="button"
+          data-toggle="view-options"
           aria-controls="view-options" data-is-focus="false" data-yeti-box="view-options"
           aria-haspopup="true" aria-expanded="false" id="dghlzu-dd-anchor">Episodes</button>
         <div class="kc-search__dropdown has-position-bottom has-alignment-right" id="view-options"
@@ -91,6 +93,9 @@
       },
       onPageChange(currentPage) {
         this.getAllEpisodes(currentPage);
+      },
+      onClickViewByButton() {
+      alert("working");
       },
     },
     beforeMount() {
