@@ -2,7 +2,8 @@
   <div class="kc-podcast-info"
     v-if="podcastInfo && (podcastInfo.podcastDirectories || podcastInfo.rssUrl)">
     <div class="kc-podcast-info__cell--artwork">
-      <img v-bind:src="podcastInfo.artworkUrlSml" alt="" class="kc-podcast-info__img">
+      <img v-bind:src="podcastInfo.artworkUrlSml" v-bind:alt="podcastInfo.artworkAltText"
+        class="kc-podcast-info__img">
     </div>
     <div class="kc-podcast-info__cell--txt">
       <div class="kc-podcast-info__title">{{ podcastInfo.title }}</div>
@@ -12,9 +13,10 @@
 
       <a v-for="podcastDirectorie in podcastInfo.podcastDirectories" target="_blank"
         :key="podcastDirectorie.order" v-bind:href="podcastDirectorie.url"
-        class="kc-podcast-info__btn--img" v-bind:title="podcastDirectorie.artworkAltText">
-        <img v-bind:src="podcastDirectorie.imageUrl" v-bind:alt="podcastDirectorie.artworkAltText">
-        <span class="show-for-sr">{{podcastDirectorie.artworkAltText}}</span>
+        class="kc-podcast-info__btn--img" v-bind:title="`Listen on ${podcastDirectorie.name}`">
+        <img v-bind:src="podcastDirectorie.imageUrl"
+          v-bind:alt="`Listen on ${podcastDirectorie.name}`">
+        <span class="show-for-sr">Listen on {{podcastDirectorie.name}}</span>
       </a>
 
       <a v-if="podcastInfo.rssUrl" v-bind:href="podcastInfo.rssUrl"
