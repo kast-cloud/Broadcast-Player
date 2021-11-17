@@ -1,6 +1,6 @@
 <template>
   <div class="kc-podcast-info"
-    v-if="podcastInfo && (podcastInfo.podcastDirectories.length > 0 || podcastInfo.rssUrl)">
+    v-if="podcastInfo && ((podcastInfo.podcastDirectories && podcastInfo.podcastDirectories.length > 0) || podcastInfo.rssUrl)">
     <div class="kc-podcast-info__cell--artwork">
       <img v-bind:src="podcastInfo.artworkUrlSml" v-bind:alt="podcastInfo.artworkAltText"
         class="kc-podcast-info__img">
