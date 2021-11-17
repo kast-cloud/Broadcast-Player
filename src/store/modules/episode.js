@@ -79,6 +79,10 @@ const mutations = {
   },
   setLatestSeriesListSuccess(state, latestSeries) {
     state.latestSeries = latestSeries;
+    //add sort by released Utc date 
+    state.latestSeries.episodes.sort((firstDate, secondDate) => {
+     return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
+    });
   },
   setEpisodesListSuccess(state, episodesList) {
     var pages = [];

@@ -14,7 +14,7 @@
                 <dd>
                   <i class="ki-info"></i>
                   {{latestSeries.totalEpisodes}}
-                  episodes (complete)
+                  episodes <span v-if="latestSeries.complete">(complete)</span>
                 </dd>
               </div>
               <div class="kc-series-card__time">
@@ -23,14 +23,14 @@
                   <i class="ki-clock"></i> 3h 35min
                 </dd>
               </div>
-              <div class="kc-series-card__done kc-series-card__done--true">
+              <!-- <div class="kc-series-card__done kc-series-card__done--true">
                 <dt>Listened</dt>
                 <dd>
                   <i class="ki-headphones"></i><span class="ku-show-sr">true</span>
                 </dd>
-              </div>
+              </div> -->
             </dl>
-            <p>{{latestSeries.summary}}.</p>
+            <p>{{latestSeries.summary}}</p>
             <a href="#" class="ko-more">Learn more<i class="ki-chevron-alt-right"></i></a>
           </div>
         </header>
@@ -59,7 +59,7 @@
 
               <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'">
                 <td class="ko-episode-tbl__num">
-                  {{index}}
+                  {{index | formatNumber}}
                 </td>
                 <td class="ko-episode-tbl__title">
                   {{episode.title}}
@@ -72,9 +72,9 @@
                 <td class="ko-episode-tbl__time">
                   <i class="ki-clock"></i> 33 min
                 </td>
-                <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
+                <!-- <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
                   <i class="ki-headphones"></i><span class="ku-show-sr">{{episode.hasAudio}}</span>
-                </td>
+                </td> -->
               </tr>
 
             </tbody>
@@ -105,6 +105,7 @@
     beforeMount() {
       this.getLatestSeries()
     },
+    
   };
 
 </script>
