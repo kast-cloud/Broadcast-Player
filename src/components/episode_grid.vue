@@ -8,7 +8,7 @@
             <div class="input-group-button">
               <button type="submit" class="button kc-search__submit">
                 <span class="ki-magnify"></span>
-                <span class="show-for-sr">Submit search</span>
+                <span class="ku-show-sr">Submit search</span>
               </button>
             </div>
             <input type="search" class="ko-input input-group-field" placeholder="Search Episodes">

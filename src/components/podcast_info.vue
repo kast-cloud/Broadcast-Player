@@ -16,7 +16,7 @@
         class="kc-podcast-info__btn--img" v-bind:title="`Listen on ${podcastDirectorie.name}`">
         <img v-bind:src="podcastDirectorie.imageUrl"
           v-bind:alt="`Listen on ${podcastDirectorie.name}`">
-        <span class="show-for-sr">Listen on {{podcastDirectorie.name}}</span>
+        <span class="ku-show-sr">Listen on {{podcastDirectorie.name}}</span>
       </a>
 
       <a v-if="podcastInfo.rssUrl" v-bind:href="podcastInfo.rssUrl"
