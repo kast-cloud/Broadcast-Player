@@ -36,8 +36,9 @@
       </div>
     </div>
     <ul class="kc-episode-list kc-episode-list--full">
-      <EpisodeGridItem v-for="episode in allEpisodes.items" v-bind:episode="episode">
-      </EpisodeGridItem>
+      <li v-for="episode in allEpisodes.items" v-bind:key="episode.id" >
+      <EpisodeItem v-bind:episode="episode"></EpisodeItem>
+      </li>
     </ul>
     <nav aria-label="Pagination" class="ko-pagination">
       <ul class="ko-pagination__list">
@@ -75,7 +76,7 @@
 </template>
 
 <script>
-  import EpisodeGridItem from '@/components/episode_grid_item.vue';
+  import EpisodeItem from '@/components/episode_item.vue';
 
   export default {
     name: 'EpisodeGrid',
@@ -101,7 +102,7 @@
       this.getAllEpisodes(1);
     },
     components: {
-      EpisodeGridItem,
+      EpisodeItem,
     }
   };
 
