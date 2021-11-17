@@ -34,18 +34,17 @@
       </div>
     </div>
     <ul class="kc-episode-list kc-episode-list--full">
-       <EpisodeGridItem v-for="episode in allEpisodes.items" v-bind:episode="episode">
-       </EpisodeGridItem>
+      <EpisodeGridItem v-for="episode in allEpisodes.items" v-bind:episode="episode">
+      </EpisodeGridItem>
     </ul>
     <nav aria-label="Pagination" class="ko-pagination">
       <ul class="ko-pagination__list">
 
         <li v-if="allEpisodes.currentPage != 1" @click="onPageChange(allEpisodes.currentPage -1)"
-           class="ko-pagination__prev">
+          class="ko-pagination__prev">
           <span>Previous <span class="ku-show-sr">page</span></span></li>
 
-        <li v-if="allEpisodes.currentPage == 1" 
-          class="ko-pagination__prev is-disabled">
+        <li v-if="allEpisodes.currentPage == 1" class="ko-pagination__prev is-disabled">
           <span>Previous <span class="ku-show-sr">page</span></span></li>
 
         <li v-for="pageNumber in allEpisodes.pages" @click="onPageChange(pageNumber++)"
@@ -61,7 +60,7 @@
         </li>
 
         <li v-if="allEpisodes.pages && allEpisodes.pages.length != allEpisodes.currentPage"
-          class="ko-pagination__next"><a  href="javascript:void(0)" aria-label="Next page"
+          class="ko-pagination__next"><a href="javascript:void(0)" aria-label="Next page"
             @click="onPageChange(allEpisodes.currentPage +1)">Next<span
               class="ku-show-sr">page</span></a></li>
 

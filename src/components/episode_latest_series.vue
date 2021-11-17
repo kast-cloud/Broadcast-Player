@@ -105,7 +105,7 @@
     beforeMount() {
       this.getLatestSeries()
     },
-    
+
   };
 
 </script>
