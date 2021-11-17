@@ -4,8 +4,10 @@
       <h2 class="kc-wdg__hdg">Latest series</h2>
       <article class="kc-series-item">
         <header class="kc-series-item__hdr">
-          <img v-bind:if="latestSeries.artworkUrlSml" v-bind:src="latestSeries.artworkUrlSml"
-            v-bind:alt="latestSeries.artworkAltText" class="kc-series-item__img">
+          <div class="kc-series-item__img-wrp" v-bind:if="latestSeries.artworkUrlSml">
+            <img v-bind:src="latestSeries.artworkUrlSml" v-bind:alt="latestSeries.artworkAltText" 
+              class="kc-series-item__img">
+          </div>
           <div class="kc-series-item__txt">
             <h1 class="kc-series-item__title">{{latestSeries.title}}</h1>
             <dl class="ko-keyvalue ko-keyvalue--value-only kc-series-item__info">
@@ -56,13 +58,12 @@
               </tr>
             </thead>
             <tbody>
-
-              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'">
+              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'" v-bind:key="episode.id">
                 <td class="ko-episode-tbl__num">
                   {{index | formatNumber}}
                 </td>
                 <td class="ko-episode-tbl__title">
-                  {{episode.title}}
+                  {{episode.title}} <span v-if="episode.author">- {{episode.author}}</span>
                 </td>
                 <td class="ko-episode-tbl__date">
                   <time class="ko-datetime">
