@@ -1,0 +1,51 @@
+<template>
+  <article class="kc-series-item">
+    <header class="kc-series-item__hdr">
+      <img src="https://placeimg.com/400/400/nature" alt="Faith Lives Here"
+        class="kc-series-item__img">
+      <div class="kc-series-item__txt">
+        <h1 class="kc-series-item__title">Faith Lives Here</h1>
+        <dl class="ko-keyvalue ko-keyvalue--value-only kc-series-item__info">
+          <div class="kc-series-card__episodes">
+            <dt>Episodes in series</dt>
+            <dd>
+              <i class="ki-info"></i> 5 episodes (complete)
+            </dd>
+          </div>
+          <div class="kc-series-card__time">
+            <dt>Total time</dt>
+            <dd>
+              <i class="ki-clock"></i> 3h 35min
+            </dd>
+          </div>
+          <div class="kc-series-card__done kc-series-card__done--">
+            <dt>Listened</dt>
+            <dd>
+              <i class="ki-headphones"></i><span class="ku-show-sr"></span>
+            </dd>
+          </div>
+        </dl>
+        <p>Series summary a quick example text to build on the card title and make up the bulk of
+          the card's
+          content.</p>
+        <a href="#" class="ko-more">Learn more<i class="ki-chevron-alt-right"></i></a>
+      </div>
+    </header>
+    <div class="kc-series-item__bdy">
+      <SeriesEpisodesTbl></SeriesEpisodesTbl>
+    </div>
+  </article>
+</template>
+
+<script>
+  import SeriesEpisodesTbl from '@/components/series_episodes_tbl.vue';
+
+  export default {
+    name: 'SeriesItem',
+    components: {
+      SeriesEpisodesTbl,
+    }
+
+  };
+
+</script>

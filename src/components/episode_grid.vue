@@ -17,7 +17,8 @@
       </div>
       <div class="kc-search__cell">
         View by:
-        <button class="ko-button ko-button--view-type" v-on:click="onClickViewByButton()"
+        <button class="ko-button ko-button--view-type" v-class="{active: isActive}"
+          v-on:click="onClickViewByButton()"
           type="button"
           data-toggle="view-options"
           aria-controls="view-options" data-is-focus="false" data-yeti-box="view-options"
@@ -95,7 +96,6 @@
         this.getAllEpisodes(currentPage);
       },
       onClickViewByButton() {
-      alert("working");
       },
     },
     beforeMount() {
