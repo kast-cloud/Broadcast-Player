@@ -17,28 +17,30 @@
       </div>
       <div class="kc-search__cell">
         View by:
-        <button class="ko-button ko-button--view-type" v-class="{active: isActive}"
-          v-on:click="onClickViewByButton()"
-          type="button"
-          data-toggle="view-options"
+        <button class="ko-button ko-button--view-type" @click="viewByBtnToogle = !viewByBtnToogle"
+          v-bind:class="{hover: viewByBtnToogle}" type="button" data-toggle="view-options"
           aria-controls="view-options" data-is-focus="false" data-yeti-box="view-options"
           aria-haspopup="true" aria-expanded="false" id="dghlzu-dd-anchor">Episodes</button>
-        <div class="kc-search__dropdown has-position-bottom has-alignment-right" id="view-options"
+        <div class="kc-search__dropdown has-position-bottom has-alignment-right"
+          v-bind:class="{'is-open': viewByBtnToogle}" id="view-options"
           data-dropdown="rtwzdu-dropdown" data-hover="false" data-close-on-click="true"
           data-v-offset="8" data-position="bottom" data-alignment="right" data-hover-pane="true"
           aria-labelledby="dghlzu-dd-anchor" aria-hidden="true" data-yeti-box="view-options"
           data-resize="view-options" data-events="resize">
           <ul class="vertical menu">
-            <li><a href="#">Series</a></li>
-            <li><a href="#">Series &amp; episodes</a></li>
-            <li><a href="#">Episodes</a></li>
+            <li @click="onChangeViewByDdl('series')"><a href="javascript:void(0)">Series</a></li>
+            <li @click="onChangeViewByDdl('series & episodes')"><a href="javascript:void(0)">Series
+                &amp;
+                episodes</a></li>
+            <li @click="onChangeViewByDdl('episodes')"><a href="javascript:void(0)">Episodes</a>
+            </li>
           </ul>
         </div>
       </div>
     </div>
-    <ul class="kc-episode-list kc-episode-list--full">
-      <li v-for="episode in allEpisodes.items" v-bind:key="episode.id" >
-      <EpisodeItem v-bind:episode="episode"></EpisodeItem>
+    <ul v-if="viewByType == 'episodes'" class="kc-episode-list kc-episode-list--full">
+      <li v-for="episode in allEpisodes.items" v-bind:key="episode.id">
+        <EpisodeItem v-bind:episode="episode"></EpisodeItem>
       </li>
     </ul>
     <nav aria-label="Pagination" class="ko-pagination">
@@ -81,6 +83,12 @@
 
   export default {
     name: 'EpisodeGrid',
+    data() {
+      return {
+        viewByBtnToogle: false,
+        viewByType: 'episodes'
+      };
+    },
     computed: {
       allEpisodes() {
         return this.$store.getters.allEpisodes
@@ -95,8 +103,9 @@
       onPageChange(currentPage) {
         this.getAllEpisodes(currentPage);
       },
-      onClickViewByButton() {
-      },
+      onChangeViewByDdl(viewByType) {
+        this.viewByType = viewByType;
+      }
     },
     beforeMount() {
       this.getAllEpisodes(1);
