@@ -27,7 +27,7 @@
                   class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
             </dd>
           </div>
-          <div v-if="episode.location.title" class="kc-episode-item__location">
+          <div v-if="episode.location" class="kc-episode-item__location">
             <dt>Location</dt>
             <dd>
               <span class="ko-badge ko-badge--location">{{episode.location.title}}</span>
