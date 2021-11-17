@@ -1,7 +1,7 @@
-
 <template>
+  <div class="grid-container">
   <div id="app">
-    <router-view/>
+    <router-view />
+  </div>
   </div>
 </template>
-

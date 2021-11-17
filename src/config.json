@@ -1,7 +1,7 @@
 
 {
     "apiInfo": { 
-            "baseUrl": "https://citylights.stg.kast.cloud/",
+            "baseUrl": "https://citylights.stg.kast.cloud",
             "broadcastId": "4nxebg7wcehdf181t4tzedfvcw"
         }
     }
