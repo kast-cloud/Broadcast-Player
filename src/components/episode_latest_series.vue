@@ -106,4 +106,5 @@
       this.getLatestSeries()
     },
   };
+
 </script>
