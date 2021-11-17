@@ -6,8 +6,8 @@
       </div>
       <div class="kc-wdg__sec--bdy">
         <ul class="kc-episode-list">
-            <EpisodeLatestListItem v-for="episode in latestEpisodes.items" v-bind:episode="episode">
-            </EpisodeLatestListItem>
+          <li v-for="episode in latestEpisodes.items" v-bind:key="episode.id"> 
+            <EpisodeSummary v-bind:episode="episode" ></EpisodeSummary>
           </li>
         </ul>
       </div>
@@ -20,7 +20,7 @@
 
 <script>
   import Vue from 'vue';
-  import EpisodeLatestListItem from '@/components/episode_latest_list_item.vue';
+  import EpisodeSummary from '@/components/episode_summary.vue';
 
   Vue.use(require('vue-moment'));
   export default {
@@ -40,7 +40,7 @@
       this.getLatestEpisodes()
     },
     components: {
-      EpisodeLatestListItem,
+      EpisodeSummary,
     }
   };
 
