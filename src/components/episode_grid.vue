@@ -136,7 +136,7 @@
 
       //on page change
       onPageChange(currentPage) {
-        
+
         if (this.selectedViewType === 'Episodes') {
           return this.getAllEpisodes(currentPage);
         }
@@ -154,6 +154,8 @@
         }
 
       },
+
+      //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
         this.viewByBtnToogle = false;
         this.selectedViewType = selectedViewType;

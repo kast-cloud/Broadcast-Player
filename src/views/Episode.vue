@@ -32,10 +32,12 @@
 </template>
 
 <script>
+  import Vue from 'vue';
   import PodcastInfo from '@/components/podcast_info.vue';
   import EpisodeLatestList from '@/components/episode_latest_list.vue';
   import EpisodeLatestSeries from '@/components/episode_latest_series.vue';
   import EpisodeGrid from '@/components/episode_grid.vue';
+  Vue.use(require('vue-moment'));
 
   export default {
     name: 'Episode',
