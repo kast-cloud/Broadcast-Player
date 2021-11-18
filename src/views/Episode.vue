@@ -25,15 +25,7 @@
             </div>
           </div>
         </div>
-        <div class="kl-episodes__all">
-          <div class="kc-broadcast-list">
-            <div class="kc-broadcast-list__hdr">
-              <h2 class="kc-broadcast-list__hdg">All series</h2>
-              <div class="kc-broadcast-list__sub-hdg">By City Lights Church</div>
-            </div>
-            <EpisodeGrid></EpisodeGrid>
-          </div>
-        </div>
+        <EpisodeGrid></EpisodeGrid>
       </div>
     </div>
   </div>

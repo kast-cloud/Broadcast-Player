@@ -1,28 +1,27 @@
 <template>
-  <a href="#" class="kc-series-card">
+  <a href="javascript:void(0)" class="kc-series-card">
     <article class="kc-series-card__inner">
       <div class="kc-series-card__img-wrp">
-        <img src="https://placeimg.com/400/400/nature" alt="Faith Lives Here"
+        <img v-bind:src="series.artworkUrlSml" v-bind:alt="series.artworkAltText"
           class="kc-series-card__img">
       </div>
       <div class="kc-series-card__txt">
-        <h1 class="kc-series-card__title">Faith Lives Here</h1>
+        <h1 class="kc-series-card__title">{{series.title}}</h1>
         <div class="kc-series-card__sum">
-          <p>Series summary a quick example text to build on the card title and make up the bulk
-            of the card's
-            content.</p>
+          <p>{{series.summary}}</p>
         </div>
         <dl class="ko-keyvalue ko-keyvalue--value-only kc-series-card__info">
           <div class="kc-series-card__episodes">
             <dt>Episodes in series</dt>
             <dd>
-              <i class="ki-info"></i> 5 episodes (complete)
+              <i class="ki-info"></i> {{series.totalEpisodes}} episodes <span
+                v-if="series.complete">(complete)</span>
             </dd>
           </div>
           <div class="kc-series-card__time">
             <dt>Total time</dt>
             <dd>
-              <i class="ki-clock"></i> 3h 35min
+              <i class="ki-clock"></i> {{series.duration}}
             </dd>
           </div>
           <div class="kc-series-card__done kc-series-card__done--">
@@ -40,6 +39,7 @@
 <script>
   export default {
     name: 'SeriesCard',
+    props: ["series"],
   };
 
 </script>

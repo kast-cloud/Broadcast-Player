@@ -5,7 +5,7 @@
       <article class="kc-series-item">
         <header class="kc-series-item__hdr">
           <div class="kc-series-item__img-wrp" v-bind:if="latestSeries.artworkUrlSml">
-            <img v-bind:src="latestSeries.artworkUrlSml" v-bind:alt="latestSeries.artworkAltText" 
+            <img v-bind:src="latestSeries.artworkUrlSml" v-bind:alt="latestSeries.artworkAltText"
               class="kc-series-item__img">
           </div>
           <div class="kc-series-item__txt">
@@ -58,7 +58,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'" v-bind:key="episode.id">
+              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'"
+                v-bind:key="episode.id">
                 <td class="ko-episode-tbl__num">
                   {{index | formatNumber}}
                 </td>
@@ -71,7 +72,7 @@
                       class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
                 </td>
                 <td class="ko-episode-tbl__time">
-                  <i class="ki-clock"></i> 33 min
+                  <i class="ki-clock"></i> {{episode.duration}}
                 </td>
                 <!-- <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
                   <i class="ki-headphones"></i><span class="ku-show-sr">{{episode.hasAudio}}</span>

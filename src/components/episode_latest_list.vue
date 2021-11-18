@@ -6,8 +6,8 @@
       </div>
       <div class="kc-wdg__sec--bdy">
         <ul class="kc-episode-list">
-          <li v-for="episode in latestEpisodes.items" v-bind:key="episode.id"> 
-            <EpisodeSummary v-bind:episode="episode" ></EpisodeSummary>
+          <li v-for="episode in latestEpisodes.items" v-bind:key="episode.id">
+            <EpisodeSummary v-bind:episode="episode"></EpisodeSummary>
           </li>
         </ul>
       </div>

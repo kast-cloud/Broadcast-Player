@@ -3,7 +3,8 @@ export const episodeService = {
   getBroadcastInfo,
   getLatestEpisodes,
   getLatestSeries,
-  getAllEpisodes
+  getAllEpisodes,
+  getAllSeriesByIncludeEpisodes
 };
 
 // Get Broadcast Info
@@ -42,6 +43,16 @@ function getLatestSeries() {
   };
   return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
     '/series/latest',
+    requestOptions).then(handleResponse);
+}
+
+// get All Series By Include Episodes
+function getAllSeriesByIncludeEpisodes(payload) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
+    '/series?IncludeEpisodes=' + payload.isIncludeEpisodes,
     requestOptions).then(handleResponse);
 }
 
