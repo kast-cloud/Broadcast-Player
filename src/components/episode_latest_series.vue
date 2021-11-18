@@ -72,7 +72,7 @@
                       class="kl-dt-separator">{{episode.releasedUtc | moment("h:mm a")}}</span></time>
                 </td>
                 <td class="ko-episode-tbl__time">
-                  <i class="ki-clock"></i> {{episode.duration}}
+                  <i class="ki-clock"></i> {{episode.duration | convertSecondsToHoursMinutes}}
                 </td>
                 <!-- <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
                   <i class="ki-headphones"></i><span class="ku-show-sr">{{episode.hasAudio}}</span>

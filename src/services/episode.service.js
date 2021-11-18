@@ -51,8 +51,7 @@ function getAllSeriesByIncludeEpisodes(payload) {
   const requestOptions = {
     method: 'GET',
   };
-  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
-    '/series?IncludeEpisodes=' + payload.isIncludeEpisodes,
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +'/series?IncludeEpisodes=' + payload.isIncludeEpisodes + '&Page=' + payload.currentPage + '&Limit=6',
     requestOptions).then(handleResponse);
 }
 

@@ -16,7 +16,7 @@
           <div class="kc-series-card__time">
             <dt>Total time</dt>
             <dd>
-              <i class="ki-clock"></i> {{series.duration}}
+              <i class="ki-clock"></i> {{series.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
           <div class="kc-series-card__done kc-series-card__done--">
@@ -67,7 +67,7 @@
             </time>
           </td>
           <td class="ko-episode-tbl__time">
-            <i class="ki-clock"></i> {{episode.duration}}
+            <i class="ki-clock"></i> {{episode.duration | convertSecondsToHoursMinutes}}
           </td>
           <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
             <i class="ki-headphones"></i><span class="ku-show-sr">false</span>

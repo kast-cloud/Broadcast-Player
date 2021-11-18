@@ -126,27 +126,51 @@
       },
     },
     methods: {
+
+      //get all episodes
       getAllEpisodes(currentPage) {
         return this.$store.dispatch('getAllEpisodes', {
           currentPage: currentPage
         })
       },
+
+      //on page change
       onPageChange(currentPage) {
-        this.getAllEpisodes(currentPage);
+        
+        if (this.selectedViewType === 'Episodes') {
+          return this.getAllEpisodes(currentPage);
+        }
+
+        if (this.selectedViewType === 'Series & episodes') {
+          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+            isIncludeEpisodes: true,
+            currentPage: currentPage
+          })
+        } else {
+          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+            isIncludeEpisodes: false,
+            currentPage: currentPage
+          })
+        }
+
       },
       onChangeViewByDdl(selectedViewType) {
         this.viewByBtnToogle = false;
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
-          return this.$store.dispatch('getAllEpisodes')
+          return this.$store.dispatch('getAllEpisodes', {
+            currentPage: 1
+          })
         }
         if (selectedViewType == 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
-            isIncludeEpisodes: true
+            isIncludeEpisodes: true,
+            currentPage: 1
           })
         } else {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
-            isIncludeEpisodes: false
+            isIncludeEpisodes: false,
+            currentPage: 1
           })
         }
       }

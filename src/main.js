@@ -5,6 +5,7 @@ import store from './store';
 import './helpers/filter.js';
 
 Vue.config.productionTip = false;
+Vue.use(require('vue-moment'));
 
 new Vue({
   router,

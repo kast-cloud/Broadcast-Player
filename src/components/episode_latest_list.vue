@@ -22,7 +22,6 @@
   import Vue from 'vue';
   import EpisodeSummary from '@/components/episode_summary.vue';
 
-  Vue.use(require('vue-moment'));
   export default {
     name: 'EpisodeLatestList',
     computed: {

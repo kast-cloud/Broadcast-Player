@@ -21,7 +21,7 @@
           <div class="kc-series-card__time">
             <dt>Total time</dt>
             <dd>
-              <i class="ki-clock"></i> {{series.duration}}
+              <i class="ki-clock"></i> {{series.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
           <div class="kc-series-card__done kc-series-card__done--">

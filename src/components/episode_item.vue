@@ -39,7 +39,7 @@
         </div>
         <div v-if="episode.duration" class="kc-episode-item__duration">
           <dt>Duration</dt>
-          <dd><i class="ki-clock"></i> 33 min</dd>
+          <dd><i class="ki-clock"></i> {{episode.duration | convertSecondsToHoursMinutes}}</dd>
         </div>
         <!-- <div class="kc-episode-item__done kc-episode-item__done--false">
             <dt>Listened</dt>
