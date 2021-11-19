@@ -4,7 +4,7 @@
       <h2 class="kc-wdg__hdg">Latest series</h2>
       <article class="kc-series-item">
         <header class="kc-series-item__hdr">
-          <div class="kc-series-item__img-wrp" v-bind:if="latestSeries.artworkUrlSml">
+          <div class="kc-series-item__img-wrp" v-if="latestSeries.artworkUrlSml">
             <img v-bind:src="latestSeries.artworkUrlSml" v-bind:alt="latestSeries.artworkAltText"
               class="kc-series-item__img">
           </div>

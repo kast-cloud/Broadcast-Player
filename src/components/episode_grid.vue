@@ -57,14 +57,14 @@
 
         <!--show series with episodes grid if the view by type is series & episodes-->
         <ul v-if="selectedViewType == 'Series & episodes'" class="kc-series-list">
-          <li v-for="series in episodesGridData.items">
+          <li v-for="series in episodesGridData.items" v-bind:key="series.id">
             <SeriesItem v-bind:series="series"></SeriesItem>
           </li>
         </ul>
 
         <!--show series cards list  if the view by type is series-->
         <ul v-if="selectedViewType == 'Series'" class="kc-series-list kc-series-list--cards">
-          <li v-for="series in episodesGridData.items">
+          <li v-for="series in episodesGridData.items" v-bind:key="series.id">
             <SeriesCard v-bind:series="series"></SeriesCard>
           </li>
         </ul>

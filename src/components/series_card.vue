@@ -1,8 +1,8 @@
 <template>
   <a href="javascript:void(0)" class="kc-series-card">
     <article class="kc-series-card__inner">
-      <div class="kc-series-card__img-wrp">
-        <img v-bind:src="series.artworkUrlSml" v-bind:alt="series.artworkAltText"
+      <div class="kc-series-card__img-wrp" v-if="series.artworkUrlLrg">
+        <img v-bind:src="series.artworkUrlLrg" v-bind:alt="series.artworkAltText"
           class="kc-series-card__img">
       </div>
       <div class="kc-series-card__txt">
@@ -18,18 +18,18 @@
                 v-if="series.complete">(complete)</span>
             </dd>
           </div>
-          <div class="kc-series-card__time">
+          <div class="kc-series-card__time" v-if="series.duration > 0">
             <dt>Total time</dt>
             <dd>
               <i class="ki-clock"></i> {{series.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
-          <div class="kc-series-card__done kc-series-card__done--">
+          <!-- <div class="kc-series-card__done kc-series-card__done--">
             <dt>Listened</dt>
             <dd>
               <i class="ki-headphones"></i><span class="ku-show-sr"></span>
             </dd>
-          </div>
+          </div> -->
         </dl>
       </div>
     </article>
@@ -41,5 +41,4 @@
     name: 'SeriesCard',
     props: ["series"],
   };
-
 </script>

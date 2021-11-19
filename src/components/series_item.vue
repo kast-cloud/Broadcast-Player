@@ -1,8 +1,10 @@
 <template>
   <article class="kc-series-item">
     <header class="kc-series-item__hdr">
-      <img v-bind:src="series.artworkUrlSml" v-bind:alt="series.artworkAltText"
-        class="kc-series-item__img">
+      <div class="kc-series-item__img-wrp" v-if="series.artworkUrlSml">
+        <img v-bind:src="series.artworkUrlSml" v-bind:alt="series.artworkAltText"
+          class="kc-series-item__img">
+      </div>
       <div class="kc-series-item__txt">
         <h1 class="kc-series-item__title">{{series.title}}</h1>
         <dl class="ko-keyvalue ko-keyvalue--value-only kc-series-item__info">
@@ -52,8 +54,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(episode, index) in series.episodes"
-          onclick="if (!window.__cfRLUnblockHandlers) return false; location.href='episode.html'">
+        <tr v-for="(episode, index) in series.episodes" v-bind:key="episode.id">
           <td class="ko-episode-tbl__num">
             {{index | formatNumber}}
           </td>
