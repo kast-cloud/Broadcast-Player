@@ -10,7 +10,8 @@ const state = {
   latestSeries: [],
   episodesList: [],
   episodeDetail: [],
-  seriesEpisodesList: []
+  seriesEpisodesList: [],
+  episodesGridData: []
 };
 
 const getters = {
@@ -31,8 +32,12 @@ const getters = {
   },
   allSeriesEpisodes() {
     return state.seriesEpisodesList;
+  },
+  getEpisodesGridData() {
+    return state.episodesGridData;
   }
-};
+}
+
 
 const actions = {
   //get Broadcast Info
@@ -74,7 +79,18 @@ const actions = {
   }, payload) {
     episodeService.getAllEpisodes(payload)
       .then(
-        episodesList => commit('setEpisodesListSuccess', episodesList),
+        episodesGridListData => commit('setEpisodesGridDataSuccess', episodesGridListData),
+        error => commit('getAllFailure', error)
+      );
+  },
+
+  //get All Series By IncludeEpisodes
+  getAllSeriesByIncludeEpisodes({
+    commit
+  }, payload) {
+    episodeService.getAllSeriesByIncludeEpisodes(payload)
+      .then(
+        episodesGridListData => commit('setEpisodesGridDataSuccess', episodesGridListData),
         error => commit('getAllFailure', error)
       );
   },
@@ -104,12 +120,15 @@ const actions = {
 };
 
 const mutations = {
+
   setBroadcastInfoSuccess(state, broadcast) {
     state.broadcastInfo = broadcast;
   },
+
   setLatestEpisodesSuccess(state, latestEpisodes) {
     state.latestEpisodes = latestEpisodes;
   },
+
   setLatestSeriesListSuccess(state, latestSeries) {
     state.latestSeries = latestSeries;
     //add sort by released Utc date 
@@ -117,14 +136,16 @@ const mutations = {
       return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
     });
   },
-  setEpisodesListSuccess(state, episodesList) {
+
+  setEpisodesGridDataSuccess(state, episodesGridListData) {
     var pages = [];
-    let numberOfPages = Math.ceil(episodesList.totalCount / episodesList.pageSize);
+    let numberOfPages = Math.ceil(episodesGridListData.totalCount / episodesGridListData
+      .pageSize);
     for (let index = 1; index <= numberOfPages; index++) {
       pages.push(index);
     }
-    episodesList.pages = pages
-    state.episodesList = episodesList;
+    episodesGridListData.pages = pages;
+    state.episodesGridData = episodesGridListData;
   },
   setEpisodeDetailSuccess(state, episodeDetail) {
     state.episodeDetail = episodeDetail;
@@ -132,6 +153,7 @@ const mutations = {
   setSeriesEpisodesListSuccess(state, seriesEpisodesList) {
     state.seriesEpisodesList = seriesEpisodesList;
   },
+
   getAllFailure(state, error) {
     state.broadcastInfo = {
       error

@@ -2,11 +2,8 @@
   <a href="#" class="kc-episode-sum">
     <article class="kc-episode-sum__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-sum__img-wrp">
-        <img
-          v-bind:src="episode.artworkUrlSml"
-          v-bind:alt="episode.title"
-          class="kc-episode-sum__img"
-        />
+        <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.title"
+          class="kc-episode-sum__img" />
       </div>
       <div class="kc-episode-sum__txt">
         <h1 class="kc-episode-sum__title">{{ episode.title }}</h1>
@@ -18,8 +15,7 @@
                 {{ episode.releasedUtc | moment("ddd Do MMMM") }}
                 <span class="kl-dt-separator">{{
                   episode.releasedUtc | moment("h:mm a")
-                }}</span></time
-              >
+                }}</span></time>
             </dd>
           </div>
           <div class="kc-episode-sum__author">
@@ -49,10 +45,11 @@
 </template>
 
 <script>
-import Vue from "vue";
+  import Vue from "vue";
 
-export default {
-  name: "EpisodeSum",
-  props: ["episode"],
-};
+  export default {
+    name: "EpisodeSum",
+    props: ["episode"],
+  };
+
 </script>

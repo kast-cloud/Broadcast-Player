@@ -4,7 +4,8 @@ export const episodeService = {
   getLatestEpisodes,
   getLatestSeries,
   getAllEpisodes,
-  getById
+  getById,
+  getAllSeriesByIncludeEpisodes
 };
 
 // Get Broadcast Info
@@ -53,8 +54,19 @@ function getById(id) {
   const requestOptions = {
     method: 'GET',
   };
-  return fetch(config.apiInfo.baseUrl + '/api/broadcast/episodes/' + id,
-    requestOptions).then(handleResponse);
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/episodes/' + id, requestOptions).then(
+    handleResponse);
+}
+
+
+// get All Series By Include Episodes
+function getAllSeriesByIncludeEpisodes(payload) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
+    '/series?IncludeEpisodes=' + payload.isIncludeEpisodes + '&Page=' + payload.currentPage +
+    '&Limit=6', requestOptions).then(handleResponse);
 }
 
 //handle Response
@@ -71,5 +83,3 @@ function handleResponse(response) {
     return data;
   });
 }
-
-

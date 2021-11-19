@@ -2,11 +2,8 @@
   <a href="#" class="kc-episode-item">
     <article class="kc-episode-item__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-item__img-wrp">
-        <img
-          v-bind:src="episode.artworkUrlSml"
-          v-bind:alt="episode.artworkAltText"
-          class="kc-episode-item__img"
-        />
+        <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.artworkAltText"
+          class="kc-episode-item__img" />
       </div>
       <div class="kc-episode-item__txt">
         <h1 class="kc-episode-item__title">{{ episode.title }}</h1>
@@ -29,8 +26,7 @@
               {{ episode.releasedUtc | moment("ddd Do MMMM") }}
               <span class="kl-dt-separator">{{
                 episode.releasedUtc | moment("h:mm a")
-              }}</span></time
-            >
+              }}</span></time>
           </dd>
         </div>
         <div v-if="episode.location" class="kc-episode-item__location">
@@ -43,7 +39,7 @@
         </div>
         <div v-if="episode.duration" class="kc-episode-item__duration">
           <dt>Duration</dt>
-          <dd><i class="ki-clock"></i> 33 min</dd>
+          <dd><i class="ki-clock"></i> {{episode.duration | convertSecondsToHoursMinutes}}</dd>
         </div>
         <!-- <div class="kc-episode-item__done kc-episode-item__done--false">
             <dt>Listened</dt>
@@ -57,8 +53,9 @@
 </template>
 
 <script>
-export default {
-  name: "EpisodeItem",
-  props: ["episode"],
-};
+  export default {
+    name: "EpisodeItem",
+    props: ["episode"],
+  };
+
 </script>

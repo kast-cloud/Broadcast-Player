@@ -6,6 +6,7 @@ import './helpers/filter.js';
 
 Vue.config.productionTip = false;
 
+
 new Vue({
   router,
   store,

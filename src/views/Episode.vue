@@ -25,25 +25,19 @@
             </div>
           </div>
         </div>
-        <div class="kl-episodes__all">
-          <div class="kc-broadcast-list">
-            <div class="kc-broadcast-list__hdr">
-              <h2 class="kc-broadcast-list__hdg">All series</h2>
-              <div class="kc-broadcast-list__sub-hdg">By City Lights Church</div>
-            </div>
-            <EpisodeGrid></EpisodeGrid>
-          </div>
-        </div>
+        <EpisodeGrid></EpisodeGrid>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
   import PodcastInfo from '@/components/podcast_info.vue';
   import EpisodeLatestList from '@/components/episode_latest_list.vue';
   import EpisodeLatestSeries from '@/components/episode_latest_series.vue';
   import EpisodeGrid from '@/components/episode_grid.vue';
+  Vue.use(require('vue-moment'));
 
   export default {
     name: 'Episode',
