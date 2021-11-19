@@ -1,5 +1,6 @@
 import {
-  episodeService
+  episodeService,
+  seriesService
 } from '../../services'
 
 
@@ -9,7 +10,7 @@ const state = {
   latestSeries: [],
   episodesList: [],
   episodeDetail: [],
-  seriesEpisodesList:[]
+  seriesEpisodesList: []
 };
 
 const getters = {
@@ -27,6 +28,9 @@ const getters = {
   },
   episodeDetail() {
     return state.episodeDetail;
+  },
+  allSeriesEpisodes() {
+    return state.seriesEpisodesList;
   }
 };
 
@@ -76,7 +80,9 @@ const actions = {
   },
 
   //get By Id
-  getById({ commit }, payload) {
+  getById({
+    commit
+  }, payload) {
     episodeService.getById(payload.id)
       .then(
         episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
@@ -84,10 +90,13 @@ const actions = {
       );
   },
 
-  getSeriesEpisodesListBySeriesId({ commit }, payload) {
-    episodeService.getById(payload.id)
+  //get Series Episodes List By SeriesId
+  getSeriesEpisodesListBySeriesId({
+    commit
+  }, payload) {
+    seriesService.getById(payload.seriesId)
       .then(
-        episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
+        seriesEpisodesList => commit('setSeriesEpisodesListSuccess', seriesEpisodesList),
         error => commit('getAllFailure', error)
       );
   },
@@ -119,6 +128,9 @@ const mutations = {
   },
   setEpisodeDetailSuccess(state, episodeDetail) {
     state.episodeDetail = episodeDetail;
+  },
+  setSeriesEpisodesListSuccess(state, seriesEpisodesList) {
+    state.seriesEpisodesList = seriesEpisodesList;
   },
   getAllFailure(state, error) {
     state.broadcastInfo = {
