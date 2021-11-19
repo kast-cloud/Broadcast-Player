@@ -48,7 +48,6 @@ function getLatestSeries() {
 
 // get All Series By Include Episodes
 function getAllSeriesByIncludeEpisodes(payload) {
-  debugger
   const requestOptions = {
     method: 'GET',
   };
