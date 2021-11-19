@@ -24,7 +24,8 @@
             <dt>Recorded</dt>
             <dd>
               <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                Sun 12 April <span class="kl-dt-separator">8:30 am</span></time>
+                 {{episodeDetail.releasedUtc | moment("ddd Do MMMM")}} <span
+                   class="kl-dt-separator">{{episodeDetail.releasedUtc | moment("h:mm a")}}</span></time>
             </dd>
           </div>
           <div class="kc-episode__location">
@@ -37,7 +38,7 @@
           <div class="kc-episode__duration">
             <dt>Duration</dt>
             <dd>
-              <i class="ki-clock"></i> {{episodeDetail.duration}}
+              <i class="ki-clock"></i> {{episodeDetail.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
           <div class="kc-episode__done kc-episode__done--false">
@@ -51,7 +52,8 @@
       <div class="kc-series__media">
         <div tabindex="0" class="plyr plyr--full-ui plyr--audio plyr--html5 plyr--paused">
           <audio id="player" controls>
-            <source v-bind:src="episodeDetail.audio.url" type="audio/mp3" />
+            <source v-if="episodeDetail.audio" v-bind:src="episodeDetail.audio.url"
+              type="audio/mp3" />
           </audio>
         </div>
       </div>
@@ -66,7 +68,8 @@
             class="ko-toolbar__txt">Give</span></button>
         <button class="ko-toolbar__btn"><i class="ki-share ko-toolbar__ico"></i> <span
             class="ko-toolbar__txt">Share</span></button>
-        <a v-bind:href="episodeDetail.audio.url" class="ko-toolbar__btn" download=""><i
+        <a v-if="episodeDetail.audio"  v-bind:href="episodeDetail.audio.url" class="ko-toolbar__btn"
+          download=""><i
             class="ki-download ko-toolbar__ico"></i> <span
             class="ko-toolbar__txt">Download</span></a>
       </div>
