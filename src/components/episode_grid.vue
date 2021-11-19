@@ -117,7 +117,7 @@
     data() {
       return {
         viewByBtnToogle: false,
-        selectedViewType: 'Episodes',
+        selectedViewType: 'Series',
       };
     },
     computed: {
@@ -130,13 +130,22 @@
       //get all episodes
       getAllEpisodes(currentPage) {
         return this.$store.dispatch('getAllEpisodes', {
-          currentPage: currentPage
+          currentPage: currentPage,
+          limit: 10
+        })
+      },
+
+      //get All Series
+      getAllSeries(currentPage) {
+        return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+          isIncludeEpisodes: false,
+          currentPage: currentPage,
+          limit: 6
         })
       },
 
       //on page change
       onPageChange(currentPage) {
-
         if (this.selectedViewType === 'Episodes') {
           return this.getAllEpisodes(currentPage);
         }
@@ -144,13 +153,11 @@
         if (this.selectedViewType === 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: true,
-            currentPage: currentPage
+            currentPage: currentPage,
+            limit: 4
           })
         } else {
-          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
-            isIncludeEpisodes: false,
-            currentPage: currentPage
-          })
+          return getAllSeries(currentPage)
         }
 
       },
@@ -161,24 +168,27 @@
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
           return this.$store.dispatch('getAllEpisodes', {
-            currentPage: 1
+            currentPage: 1,
+            limit: 10
           })
         }
         if (selectedViewType == 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: true,
-            currentPage: 1
+            currentPage: 1,
+            limit: 4
           })
         } else {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: false,
-            currentPage: 1
+            currentPage: 1,
+            limit: 6
           })
         }
       }
     },
     beforeMount() {
-      this.getAllEpisodes(1);
+      this.getAllSeries(1);
     },
     components: {
       EpisodeItem,
