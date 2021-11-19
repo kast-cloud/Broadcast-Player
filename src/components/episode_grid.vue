@@ -80,8 +80,7 @@
               <span>Previous <span class="ku-show-sr">page</span></span></li>
 
             <li v-if="episodesGridData.pages && episodesGridData.pages.length > 1"
-              v-for="pageNumber in episodesGridData.pages"
-              @click="onPageChange(pageNumber++)"
+              v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)"
               :class="pageNumber == episodesGridData.currentPage ? 'ko-pagination__current' : ''">
 
               <span v-if="pageNumber == episodesGridData.currentPage" class="ku-show-sr">You're on
@@ -187,7 +186,9 @@
             limit: 6
           })
         }
-      }
+      },
+
+
     },
     beforeMount() {
       this.getAllSeries(1);
