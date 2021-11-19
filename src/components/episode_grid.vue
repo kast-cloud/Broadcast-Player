@@ -95,7 +95,6 @@
         this.getAllEpisodes(currentPage);
       },
       onClickViewByButton() {
-      alert("working");
       },
     },
     beforeMount() {

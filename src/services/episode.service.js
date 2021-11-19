@@ -3,7 +3,8 @@ export const episodeService = {
   getBroadcastInfo,
   getLatestEpisodes,
   getLatestSeries,
-  getAllEpisodes
+  getAllEpisodes,
+  getById
 };
 
 // Get Broadcast Info
@@ -25,6 +26,7 @@ function getLatestEpisodes() {
     requestOptions).then(handleResponse);
 }
 
+
 // get All Episodes
 function getAllEpisodes(payload) {
   const requestOptions = {
@@ -45,6 +47,16 @@ function getLatestSeries() {
     requestOptions).then(handleResponse);
 }
 
+// get By Id
+function getById(id) {
+  debugger
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/episodes/' + id,
+    requestOptions).then(handleResponse);
+}
+
 //handle Response
 function handleResponse(response) {
   return response.text().then(text => {
@@ -59,3 +71,5 @@ function handleResponse(response) {
     return data;
   });
 }
+
+

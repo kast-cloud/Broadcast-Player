@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Episode from '../views/Episode.vue';
+import EpisodeDetail from '../views/EpisodeDetail.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'Episode',
-    component: Episode,
+    name: 'EpisodeDetail',
+    component: EpisodeDetail,
+  },
+  {
+    path: '/EpisodeDetail',
+    name: 'EpisodeDetail',
+    component: EpisodeDetail,
   }
 ];
 

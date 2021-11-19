@@ -2,11 +2,14 @@ import {
   episodeService
 } from '../../services'
 
+
 const state = {
   broadcastInfo: [],
   latestEpisodes: [],
   latestSeries: [],
-  episodesList: []
+  episodesList: [],
+  episodeDetail: [],
+  seriesEpisodesList:[]
 };
 
 const getters = {
@@ -21,6 +24,9 @@ const getters = {
   },
   allEpisodes() {
     return state.episodesList;
+  },
+  episodeDetail() {
+    return state.episodeDetail;
   }
 };
 
@@ -67,7 +73,25 @@ const actions = {
         episodesList => commit('setEpisodesListSuccess', episodesList),
         error => commit('getAllFailure', error)
       );
-  }
+  },
+
+  //get By Id
+  getById({ commit }, payload) {
+    episodeService.getById(payload.id)
+      .then(
+        episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
+        error => commit('getAllFailure', error)
+      );
+  },
+
+  getSeriesEpisodesListBySeriesId({ commit }, payload) {
+    episodeService.getById(payload.id)
+      .then(
+        episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
+        error => commit('getAllFailure', error)
+      );
+  },
+
 };
 
 const mutations = {
@@ -81,7 +105,7 @@ const mutations = {
     state.latestSeries = latestSeries;
     //add sort by released Utc date 
     state.latestSeries.episodes.sort((firstDate, secondDate) => {
-     return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
+      return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
     });
   },
   setEpisodesListSuccess(state, episodesList) {
@@ -92,6 +116,9 @@ const mutations = {
     }
     episodesList.pages = pages
     state.episodesList = episodesList;
+  },
+  setEpisodeDetailSuccess(state, episodeDetail) {
+    state.episodeDetail = episodeDetail;
   },
   getAllFailure(state, error) {
     state.broadcastInfo = {
