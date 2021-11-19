@@ -79,8 +79,11 @@
             <li v-if="episodesGridData.currentPage == 1" class="ko-pagination__prev is-disabled">
               <span>Previous <span class="ku-show-sr">page</span></span></li>
 
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length > 1"
-              v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)"
+            <<<<<<< HEAD <li v-if="episodesGridData.pages && episodesGridData.pages.length > 1"
+              v-for="pageNumber in episodesGridData.pages"
+              @click="onPageChange(pageNumber++)"=======<li
+              v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)">
+              >>>>>> develop
               :class="pageNumber == episodesGridData.currentPage ? 'ko-pagination__current' : ''">
 
               <span v-if="pageNumber == episodesGridData.currentPage" class="ku-show-sr">You're on
@@ -90,17 +93,17 @@
                 aria-label="Page 2">{{pageNumber}}</a>
 
               {{pageNumber==episodesGridData.currentPage?pageNumber:''}}
-            </li>
+              </li>
 
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length !=
+              <li v-if="episodesGridData.pages && episodesGridData.pages.length !=
               episodesGridData.currentPage" class="ko-pagination__next"><a
-                href="javascript:void(0)" aria-label="Next page"
-                @click="onPageChange(episodesGridData.currentPage +1)">Next<span
-                  class="ku-show-sr">page</span></a></li>
+                  href="javascript:void(0)" aria-label="Next page"
+                  @click="onPageChange(episodesGridData.currentPage +1)">Next<span
+                    class="ku-show-sr">page</span></a></li>
 
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length ==
+              <li v-if="episodesGridData.pages && episodesGridData.pages.length ==
               episodesGridData.currentPage" class="ko-pagination__next">
-              Next<span class="ku-show-sr">page</span></li>
+                Next<span class="ku-show-sr">page</span></li>
           </ul>
         </nav>
       </div>
@@ -117,8 +120,8 @@
     name: 'EpisodeGrid',
     data() {
       return {
-        viewByBtnToogle: false,
-        selectedViewType: 'Series',
+        viewByBtnToogle: false,       
+        selectedViewType: 'Series',      
       };
     },
     computed: {
@@ -147,20 +150,7 @@
 
       //on page change
       onPageChange(currentPage) {
-        if (this.selectedViewType === 'Episodes') {
-          return this.getAllEpisodes(currentPage);
-        }
-
-        if (this.selectedViewType === 'Series & episodes') {
-          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
-            isIncludeEpisodes: true,
-            currentPage: currentPage,
-            limit: 4
-          })
-        } else {
-          return getAllSeries(currentPage)
-        }
-
+        currentPage: currentPage
       },
 
       //on Change View By Ddl
@@ -169,15 +159,13 @@
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
           return this.$store.dispatch('getAllEpisodes', {
-            currentPage: 1,
-            limit: 10
+            currentPage: 1
           })
         }
         if (selectedViewType == 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: true,
-            currentPage: 1,
-            limit: 4
+            currentPage: 1
           })
         } else {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
@@ -187,8 +175,6 @@
           })
         }
       },
-
-
     },
     beforeMount() {
       this.getAllSeries(1);
