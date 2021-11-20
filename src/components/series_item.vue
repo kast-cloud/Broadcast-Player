@@ -1,8 +1,8 @@
 <template>
   <article class="kc-series-item">
     <header class="kc-series-item__hdr">
-      <div class="kc-series-item__img-wrp" v-if="series.artworkUrlSml">
-        <img v-bind:src="series.artworkUrlSml" v-bind:alt="series.artworkAltText"
+      <div class="kc-series-item__img-wrp" v-if="series.artworkUrlLrg">
+        <img v-bind:src="series.artworkUrlLrg" v-bind:alt="series.artworkAltText"
           class="kc-series-item__img">
       </div>
       <div class="kc-series-item__txt">
@@ -21,12 +21,12 @@
               <i class="ki-clock"></i> {{series.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
-          <div class="kc-series-card__done kc-series-card__done--">
+          <!-- <div class="kc-series-card__done kc-series-card__done--">
             <dt>Listened</dt>
             <dd>
               <i class="ki-headphones"></i><span class="ku-show-sr"></span>
             </dd>
-          </div>
+          </div> -->
         </dl>
         <p>{{series.summary}}</p>
         <a href="javascript:void(0)" class="ko-more">Learn more<i
