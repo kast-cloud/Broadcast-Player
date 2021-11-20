@@ -59,7 +59,7 @@
             {{index | formatNumber}}
           </td>
           <td class="ko-episode-tbl__title">
-            {{episode.title}}
+            {{episode.title}} <span v-if="episode.author">- {{episode.author}}</span>
           </td>
           <td class="ko-episode-tbl__date">
             <time class="ko-datetime">
@@ -70,9 +70,9 @@
           <td class="ko-episode-tbl__time">
             <i class="ki-clock"></i> {{episode.duration | convertSecondsToHoursMinutes}}
           </td>
-          <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
+          <!-- <td class="ko-episode-tbl__done ko-episode-tbl__done--false">
             <i class="ki-headphones"></i><span class="ku-show-sr">false</span>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
