@@ -69,7 +69,8 @@
           </li>
         </ul>
 
-        <nav aria-label="Pagination" class="ko-pagination">
+        <nav aria-label="Pagination" class="ko-pagination"
+          v-if="episodesGridData.pages && episodesGridData.pages.length > 1">
           <ul class="ko-pagination__list">
 
             <li v-if="episodesGridData.currentPage != 1"
@@ -79,8 +80,7 @@
             <li v-if="episodesGridData.currentPage == 1" class="ko-pagination__prev is-disabled">
               <span>Previous <span class="ku-show-sr">page</span></span></li>
 
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length > 1"
-              v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)"
+            <li v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)"
               :class="pageNumber == episodesGridData.currentPage ? 'ko-pagination__current' : ''">
 
               <span v-if="pageNumber == episodesGridData.currentPage" class="ku-show-sr">You're on
@@ -199,4 +199,5 @@
       SeriesItem
     }
   };
+
 </script>
