@@ -84,7 +84,11 @@ export default {
   props: ["series"],
   computed: {
     sortedEpisodes() {
-      return this.series.episodes.sort((a, b) => new Date(a.releasedUtc) - new Date(b.releasedUtc));
+      if (this.series.episodes) {
+        return this.series.episodes.sort(
+          (a, b) => new Date(a.releasedUtc) - new Date(b.releasedUtc)
+        );
+      }
     },
   },
 };
