@@ -22,8 +22,8 @@
         <div class="kc-episode-item__released">
           <dt>Recorded</dt>
           <dd>
-            <time class="ko-datetime">
-              {{ episode.releasedUtc | moment("ddd Do MMMM") }}
+            <time class="ko-datetime" :datetime="episode.releasedUtc">
+              {{ episode.releasedUtc | moment("ddd Do MMM, YYYY") }}
               <span class="kl-dt-separator">{{
                 episode.releasedUtc | moment("h:mm a")
               }}</span></time>
@@ -32,9 +32,8 @@
         <div v-if="episode.location" class="kc-episode-item__location">
           <dt>Location</dt>
           <dd>
-            <span class="ko-badge ko-badge--location">{{
-              episode.location.title
-            }}</span>
+            <span class="ko-badge ko-badge--location">
+              {{ episode.location.title }}</span>
           </dd>
         </div>
         <div v-if="episode.duration" class="kc-episode-item__duration">

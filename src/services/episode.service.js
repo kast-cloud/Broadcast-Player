@@ -32,7 +32,7 @@ function getAllEpisodes(payload) {
     method: 'GET',
   };
   return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
-    '/episodes?IncludeBlocked=False&Page=' + payload.currentPage + '&Limit=5',
+    '/episodes?IncludeBlocked=False&Page=' + payload.currentPage + '&Limit=' + payload.limit,
     requestOptions).then(handleResponse);
 }
 
@@ -51,8 +51,7 @@ function getAllSeriesByIncludeEpisodes(payload) {
   const requestOptions = {
     method: 'GET',
   };
-  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +'/series?IncludeEpisodes=' + payload.isIncludeEpisodes + '&Page=' + payload.currentPage + '&Limit=6',
-    requestOptions).then(handleResponse);
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +'/series?IncludeEpisodes=' + payload.isIncludeEpisodes + '&Page=' + payload.currentPage + '&Limit=' + payload.limit,requestOptions).then(handleResponse);
 }
 
 //handle Response
