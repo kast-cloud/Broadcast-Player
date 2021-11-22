@@ -3,7 +3,6 @@ import {
   seriesService
 } from '../../services'
 
-
 const state = {
   broadcastInfo: [],
   latestEpisodes: [],
@@ -110,7 +109,7 @@ const actions = {
   getSeriesDetailById({
     commit
   }, payload) {
-    seriesService.getById(payload.seriesId)
+    seriesService.getById(payload.id)
       .then(
         seriesDetail => commit('setSeriesDetailSuccess', seriesDetail),
         error => commit('getAllFailure', error)
@@ -147,9 +146,11 @@ const mutations = {
     episodesGridListData.pages = pages;
     state.episodesGridData = episodesGridListData;
   },
+
   setEpisodeDetailSuccess(state, episodeDetail) {
     state.episodeDetail = episodeDetail;
   },
+
   setSeriesDetailSuccess(state, seriesDetail) {
     state.seriesDetail = seriesDetail;
   },

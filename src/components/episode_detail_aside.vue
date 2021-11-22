@@ -60,15 +60,20 @@
   export default {
     name: 'EpisodeDetailAside',
     props: ["episodeDetail"],
+    data: function () {
+      return {
+        episodeData: this.episodeDetail
+      }
+    },
     computed: {
       seriesDetail() {
         return this.$store.getters.getSeriesDetail
       }
     },
     methods: {
-      getSeriesDetailById(seriesId) {
+      getSeriesDetailById(id) {
         return this.$store.dispatch('getSeriesDetailById', {
-          seriesId: seriesId
+          id: id
         })
       },
 

@@ -3,7 +3,7 @@
     <article class="kc-episode">
       <header class="kc-episode__hdr">
         <div class="kc-episode__img-wrp">
-          <img v-bind:src="episodeDetail.artworkUrlSml" v-bind:alt="episodeDetail.title"
+          <img v-bind:src="episodeDetail.artworkUrlSml" v-bind:alt="episodeDetail.artworkAltText"
             class="kc-episode__img">
         </div>
         <div class="kc-episode__txt">
@@ -24,8 +24,8 @@
             <dt>Recorded</dt>
             <dd>
               <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                 {{episodeDetail.releasedUtc | moment("ddd Do MMMM")}} <span
-                   class="kl-dt-separator">{{episodeDetail.releasedUtc | moment("h:mm a")}}</span></time>
+                {{episodeDetail.releasedUtc | moment("ddd Do MMMM")}} <span
+                  class="kl-dt-separator">{{episodeDetail.releasedUtc | moment("h:mm a")}}</span></time>
             </dd>
           </div>
           <div class="kc-episode__location">
@@ -68,9 +68,8 @@
             class="ko-toolbar__txt">Give</span></button>
         <button class="ko-toolbar__btn"><i class="ki-share ko-toolbar__ico"></i> <span
             class="ko-toolbar__txt">Share</span></button>
-        <a v-if="episodeDetail.audio"  v-bind:href="episodeDetail.audio.url" class="ko-toolbar__btn"
-          download=""><i
-            class="ki-download ko-toolbar__ico"></i> <span
+        <a v-if="episodeDetail.audio" v-bind:href="episodeDetail.audio.url" class="ko-toolbar__btn"
+          download=""><i class="ki-download ko-toolbar__ico"></i> <span
             class="ko-toolbar__txt">Download</span></a>
       </div>
       <div class="kc-episode__bdy">
@@ -97,12 +96,10 @@
       </div>
     </article>
   </div>
-
 </template>
 
 <script>
   import Plyr from 'plyr';
-
   const player = new Plyr('#player');
 
   export default {
