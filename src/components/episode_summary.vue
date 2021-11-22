@@ -11,8 +11,8 @@
           <div class="kc-episode-sum__released">
             <dt>Recorded</dt>
             <dd>
-              <time class="ko-datetime">
-                {{ episode.releasedUtc | moment("ddd Do MMMM") }}
+              <time class="ko-datetime" :datetime="episode.releasedUtc">
+                {{ episode.releasedUtc | moment("ddd Do MMM, YYYY") }}
                 <span class="kl-dt-separator">{{
                   episode.releasedUtc | moment("h:mm a")
                 }}</span></time>
