@@ -83,7 +83,7 @@ export default {
   name: "SeriesItem",
   props: ["series"],
   computed: {
-    sortedEpisodes: function () {
+    sortedEpisodes() {
       return this.series.episodes.sort((a, b) => new Date(a.releasedUtc) - new Date(b.releasedUtc));
     },
   },
