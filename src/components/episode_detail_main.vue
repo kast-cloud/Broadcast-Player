@@ -50,12 +50,16 @@
         </dl>
       </header>
       <div class="kc-series__media">
-        <div tabindex="0" class="plyr plyr--full-ui plyr--audio plyr--html5 plyr--paused">
-          <audio id="player" controls>
-            <source v-if="episodeDetail.audio" v-bind:src="episodeDetail.audio.url"
-              type="audio/mp3" />
-          </audio>
-        </div>
+        <audio id="player" class="ko-player--audio" controls>
+          <source v-if="episodeDetail.audio" v-bind:src="episodeDetail.audio.url"
+            type="audio/mpeg" />
+          <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+              video</a>
+          </p>
+        </audio>
       </div>
       <div class="ko-toolbar">
         <button class="ko-toolbar__btn"><i class="ki-prayer ko-toolbar__ico"></i><span
@@ -105,6 +109,54 @@
   export default {
     name: 'EpisodeDetailMain',
     props: ["episodeDetail"],
+    mounted() {
+      if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+
+        const players = Array.from(document.querySelectorAll('.ko-player--audio')).map(p =>
+          new Plyr(
+            p, {
+              controls: [
+                'rewind',
+                'play',
+                'fast-forward',
+                'progress',
+                'current-time',
+                'settings',
+                'airplay'
+              ],
+              seekTime: 15
+            }));
+
+        players.forEach(player => {
+          player.on('play', () => {
+            player.elements.container.classList.add('player-expand');
+            players.forEach(otherPlayer => {
+              if (otherPlayer !== player && otherPlayer.playing) {
+                otherPlayer.pause();
+              }
+            });
+            // player.toggleControls('progress');
+          });
+          player.on('pause', () => {
+            if (!player.seeking) {
+              player.elements.container.classList.remove('player-expand');
+            }
+          });
+        });
+
+        // When play button clicked - find and show the closest player.
+        const playButtons = document.querySelectorAll('.play-button');
+        playButtons.forEach(playButton => {
+          playButton.addEventListener('click', event => {
+            event.preventDefault();
+            console.log(playButton.parentNode.querySelector('.audio-player'));
+            const player = playButton.parentNode.querySelector('.plyr');
+            player.style.display = 'block';
+            playButton.style.opacity = 0;
+          });
+        });
+      }
+    }
   };
 
 </script>

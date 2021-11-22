@@ -60,26 +60,25 @@
   export default {
     name: 'EpisodeDetailAside',
     props: ["episodeDetail"],
-    data: function () {
-      return {
-        episodeData: this.episodeDetail
-      }
-    },
     computed: {
       seriesDetail() {
         return this.$store.getters.getSeriesDetail
-      }
+      },
     },
     methods: {
       getSeriesDetailById(id) {
         return this.$store.dispatch('getSeriesDetailById', {
-          id: id
+          seriesId: id
         })
+      },
+      getSeriesId() {
+        if (this.episodeDetail.series) return this.episodeDetail.series.id;
+        else return null
       },
 
     },
-    beforeMount() {
-      this.getSeriesDetailById('');
+    created() {
+      this.getSeriesDetailById(this.getSeriesId());
     },
     components: {
       EpisodeSummary,
