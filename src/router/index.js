@@ -7,18 +7,13 @@ Vue.use(VueRouter);
 
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Episode',
-  //   component: Episode,
-  // },
-  // {
-  //   path: '/',
-  //   name: 'EpisodeDetail',
-  //   component: EpisodeDetail,
-  // },
   {
     path: '/',
+    name: 'Episode',
+    component: Episode,
+  },
+  {
+    path: '/EpisodeDetail/:id',
     name: 'EpisodeDetail',
     component: EpisodeDetail,
   }

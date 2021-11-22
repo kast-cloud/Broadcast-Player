@@ -14,7 +14,6 @@ function getById(id) {
 
 //handle Response
 function handleResponse(response) {
-  debugger
   return response.text().then(text => {
     const data = text && JSON.parse(text);
     if (!response.ok) {

@@ -10,7 +10,7 @@ const state = {
   latestSeries: [],
   episodesList: [],
   episodeDetail: [],
-  seriesEpisodesList: [],
+  seriesDetail: [],
   episodesGridData: []
 };
 
@@ -30,8 +30,8 @@ const getters = {
   episodeDetail() {
     return state.episodeDetail;
   },
-  allSeriesEpisodes() {
-    return state.seriesEpisodesList;
+  getSeriesDetail() {
+    return state.seriesDetail;
   },
   getEpisodesGridData() {
     return state.episodesGridData;
@@ -106,13 +106,13 @@ const actions = {
       );
   },
 
-  //get Series Episodes List By SeriesId
-  getSeriesEpisodesListBySeriesId({
+  //get Series detail By Id
+  getSeriesDetailById({
     commit
   }, payload) {
     seriesService.getById(payload.seriesId)
       .then(
-        seriesEpisodesList => commit('setSeriesEpisodesListSuccess', seriesEpisodesList),
+        seriesDetail => commit('setSeriesDetailSuccess', seriesDetail),
         error => commit('getAllFailure', error)
       );
   },
@@ -150,8 +150,8 @@ const mutations = {
   setEpisodeDetailSuccess(state, episodeDetail) {
     state.episodeDetail = episodeDetail;
   },
-  setSeriesEpisodesListSuccess(state, seriesEpisodesList) {
-    state.seriesEpisodesList = seriesEpisodesList;
+  setSeriesDetailSuccess(state, seriesDetail) {
+    state.seriesDetail = seriesDetail;
   },
 
   getAllFailure(state, error) {

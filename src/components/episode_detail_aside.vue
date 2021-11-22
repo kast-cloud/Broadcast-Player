@@ -1,18 +1,18 @@
 <template>
-  <aside class="kl-broadcast-detail__aside">
+  <aside class="kl-broadcast-detail__aside" v-if="episodeDetail.series">
     <article class="kc-series-card">
-      <a href="#" class="kc-series-card__img-wrp">
-        <img v-bind:src="episodeDetail.artworkUrlSml" v-bind:alt="episodeDetail.title"
+      <a href="javascript:void(0)" class="kc-series-card__img-wrp">
+        <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.title"
           class="kc-series-card__img">
       </a>
       <div class="kc-series-card__txt">
-        <h1 class="kc-series-card__title"><a href="#">{{episodeDetail.title}}</a></h1>
+        <h1 class="kc-series-card__title"><a href="javascript:void(0)">{{seriesDetail.title}}</a>
+        </h1>
         <div class="kc-series-card__sum">
-          <p>Series summary a quick example text to build on the card title and make up the bulk of
-            the card's
-            content.</p>
+          <p>{{seriesDetail.summary}}</p>
         </div>
-        <a href="#" class="ko-more">View series<i class="ki-chevron-alt-right"></i></a>
+        <a href="javascript:void(0)" class="ko-more">View series<i
+            class="ki-chevron-alt-right"></i></a>
       </div>
     </article>
     <div class="kc-wdg--series-episodes">
@@ -21,7 +21,7 @@
       </div>
       <div class="kc-wdg__sec--bdy">
         <ul class="kc-episode-list">
-          <li v-for="episode in seriesEpisodesList.episodes">
+          <li v-for="episode in seriesDetail.episodes" v-if="episode.id !== episodeDetail.id">
             <EpisodeSummary v-bind:episode="episode"></EpisodeSummary>
           </li>
         </ul>
@@ -51,32 +51,37 @@
       </div>
     </div>
   </aside>
+  <aside class="kl-broadcast-detail__aside" v-else>
+    <EpisodeLatestList></EpisodeLatestList>
+  </aside>
 </template>
 
 <script>
   import EpisodeSummary from '@/components/episode_summary.vue';
-
+  import EpisodeLatestList from '@/components/episode_latest_list.vue';
   export default {
     name: 'EpisodeDetailAside',
     props: ["episodeDetail"],
     computed: {
-      seriesEpisodesList() {
-        return this.$store.getters.allSeriesEpisodes
+      seriesDetail() {
+        return this.$store.getters.getSeriesDetail
       }
     },
     methods: {
-      getSeriesEpisodesListBySeriesId(seriesId) {
-        return this.$store.dispatch('getSeriesEpisodesListBySeriesId', {
+      getSeriesDetailById(seriesId) {
+        return this.$store.dispatch('getSeriesDetailById', {
           seriesId: seriesId
         })
       },
+       
     },
     beforeMount() {
-      this.getSeriesEpisodesListBySeriesId('');
+      this.getSeriesDetailById('');
     },
-     components: {
-     EpisodeSummary,
-     }
+    components: {
+      EpisodeSummary,
+      EpisodeLatestList
+    }
   };
 
 </script>

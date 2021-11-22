@@ -50,7 +50,6 @@ function getLatestSeries() {
 
 // get By Id
 function getById(id) {
-  debugger
   const requestOptions = {
     method: 'GET',
   };

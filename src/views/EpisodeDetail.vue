@@ -31,7 +31,7 @@
     methods: {
       getEpisodeDetail() {
         return this.$store.dispatch('getById', {
-          id: '46t043ax9ab2r3bs616b7shqxx'
+          id: window.location.href.split('/').at(-1)
         })
       },
     },

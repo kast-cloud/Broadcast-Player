@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="kc-episode-item">
+  <router-link :to="{ name: 'EpisodeDetail', params: { id: episode.id }}" class="kc-episode-item">
     <article class="kc-episode-item__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-item__img-wrp">
         <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.artworkAltText"
@@ -49,7 +49,7 @@
           </div> -->
       </dl>
     </article>
-  </a>
+  </router-link>
 </template>
 
 <script>
