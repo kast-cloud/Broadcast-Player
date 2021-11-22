@@ -1,6 +1,6 @@
 <template>
-  <aside class="kl-broadcast-detail__aside" v-if="episodeDetail.series">
-    <article class="kc-series-card">
+  <aside class="kl-broadcast-detail__aside">
+    <article class="kc-series-card" v-if="episodeDetail.series">
       <a href="javascript:void(0)" class="kc-series-card__img-wrp">
         <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.title"
           class="kc-series-card__img">
@@ -15,7 +15,7 @@
             class="ki-chevron-alt-right"></i></a>
       </div>
     </article>
-    <div class="kc-wdg--series-episodes">
+    <div class="kc-wdg--series-episodes" v-if="episodeDetail.series">
       <div class="kc-wdg__sec--hdr">
         <h2 class="kc-wdg__hdg">More episodes from this series</h2>
       </div>
@@ -31,6 +31,7 @@
             class="ki-chevron-alt-right"></i></a>
       </div>
     </div>
+    <EpisodeLatestList v-else></EpisodeLatestList>
     <div class="kc-subscribe">
       <div class="kc-subscribe__cell">
         <h3 class="kc-subscribe__hdg">Subscribe to new episodes</h3>
@@ -51,9 +52,6 @@
       </div>
     </div>
   </aside>
-  <aside class="kl-broadcast-detail__aside" v-else>
-    <EpisodeLatestList></EpisodeLatestList>
-  </aside>
 </template>
 
 <script>
@@ -73,7 +71,7 @@
           seriesId: seriesId
         })
       },
-       
+
     },
     beforeMount() {
       this.getSeriesDetailById('');
