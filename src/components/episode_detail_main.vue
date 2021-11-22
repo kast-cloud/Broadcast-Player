@@ -111,7 +111,6 @@
     props: ["episodeDetail"],
     mounted() {
       if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-
         const players = Array.from(document.querySelectorAll('.ko-player--audio')).map(p =>
           new Plyr(
             p, {
