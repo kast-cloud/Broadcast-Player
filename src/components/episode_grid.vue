@@ -164,7 +164,6 @@
 
       },
 
-
       //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
         this.viewByBtnToogle = false;
@@ -189,10 +188,19 @@
           })
         }
       },
+
     },
     beforeMount() {
       this.getAllSeries(1);
     },
+
+    created() {
+      this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {
+        this.selectedViewType = selectedViewType;
+        return this.getAllEpisodes(1);
+      });
+    },
+
     components: {
       EpisodeItem,
       SeriesCard,

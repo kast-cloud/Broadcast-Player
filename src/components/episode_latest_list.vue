@@ -22,7 +22,7 @@
 <script>
   import Vue from 'vue';
   import EpisodeSummary from '@/components/episode_summary.vue';
-
+ 
   export default {
     name: 'EpisodeLatestList',
     computed: {
@@ -38,6 +38,7 @@
 
       //on Click View All episode Btn
       onClickViewAllEpisodeBtn() {
+        this.$eventHub.$emit('onClickViewAllEpisodeBtn','Episodes');
         document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
       }
 
