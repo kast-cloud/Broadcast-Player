@@ -24,7 +24,7 @@
             <dt>Recorded</dt>
             <dd>
               <time datetime="Sun 12 April 8:30 am" class="ko-datetime">
-                {{episodeDetail.releasedLocal | moment("ddd Do MMMM")}} <span
+                {{episodeDetail.releasedLocal | moment("ddd Do MMM, YYYY")}} <span
                   class="kl-dt-separator">{{episodeDetail.releasedLocal | moment("h:mm a")}}</span></time>
             </dd>
           </div>

@@ -68,7 +68,7 @@
                 </td>
                 <td class="ko-episode-tbl__date">
                   <time class="ko-datetime">
-                    {{episode.releasedLocal | moment("ddd Do MMMM")}} <span
+                    {{episode.releasedLocal | moment("ddd Do MMM, YYYY")}} <span
                       class="kl-dt-separator">{{episode.releasedLocal | moment("h:mm a")}}</span></time>
                 </td>
                 <td class="ko-episode-tbl__time">

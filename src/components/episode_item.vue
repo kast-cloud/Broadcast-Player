@@ -23,7 +23,7 @@
           <dt>Recorded</dt>
           <dd>
             <time class="ko-datetime">
-              {{ episode.releasedLocal | moment("ddd Do MMMM") }}
+              {{ episode.releasedLocal | moment("ddd Do MMM, YYYY") }}
               <span class="kl-dt-separator">{{
                 episode.releasedLocal | moment("h:mm a")
               }}</span></time>

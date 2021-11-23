@@ -6,15 +6,19 @@ import EpisodeDetail from '../views/EpisodeDetail.vue';
 Vue.use(VueRouter);
 
 
-const routes = [
-  {
+const routes = [{
     path: '/',
-    name: 'Episode',
+    name: 'episode',
     component: Episode,
   },
   {
-    path: '/EpisodeDetail/:id',
-    name: 'EpisodeDetail',
+    path: '/Episode',
+    name: 'episode',
+    component: Episode,
+  },
+  {
+    path: '/episodeDetail/:id',
+    name: 'episodeDetail',
     component: EpisodeDetail,
   }
 ];
