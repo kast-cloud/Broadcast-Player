@@ -5,7 +5,7 @@ import store from './store';
 import './helpers/filter.js';
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$eventHub = new Vue(); // Global event bus
 
 new Vue({
   router,

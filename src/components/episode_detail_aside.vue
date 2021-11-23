@@ -68,7 +68,7 @@
     methods: {
       getSeriesDetailById(id) {
         return this.$store.dispatch('getSeriesDetailById', {
-          seriesId: id
+          id: id
         })
       },
       getSeriesId() {

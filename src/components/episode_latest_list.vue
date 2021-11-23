@@ -12,7 +12,8 @@
         </ul>
       </div>
       <div class="kc-wdg__sec--ftr">
-        <a href="#" class="ko-more">View all episodes<i class="ki-chevron-alt-right"></i></a>
+        <a href="javascript:void(0)" @click="onClickViewAllEpisodeBtn()" class="ko-more">View all
+          episodes<i class="ki-chevron-alt-right"></i></a>
       </div>
     </div>
   </div>
@@ -21,7 +22,7 @@
 <script>
   import Vue from 'vue';
   import EpisodeSummary from '@/components/episode_summary.vue';
-
+ 
   export default {
     name: 'EpisodeLatestList',
     computed: {
@@ -30,9 +31,16 @@
       }
     },
     methods: {
+
       getLatestEpisodes() {
         return this.$store.dispatch('getLatestEpisodes')
       },
+
+      //on Click View All episode Btn
+      onClickViewAllEpisodeBtn() {
+        this.$eventHub.$emit('onClickViewAllEpisodeBtn','Episodes');
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      }
 
     },
     beforeMount() {

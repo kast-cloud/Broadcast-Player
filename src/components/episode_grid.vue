@@ -69,37 +69,30 @@
           </li>
         </ul>
 
-        <nav aria-label="Pagination" class="ko-pagination">
+        <nav aria-label="Pagination" class="ko-pagination"
+          v-if="showPager">
           <ul class="ko-pagination__list">
-
-            <li v-if="episodesGridData.currentPage != 1"
-              @click="onPageChange(episodesGridData.currentPage -1)" class="ko-pagination__prev">
-              <span>Previous <span class="ku-show-sr">page</span></span></li>
-
-            <li v-if="episodesGridData.currentPage == 1" class="ko-pagination__prev is-disabled">
-              <span>Previous <span class="ku-show-sr">page</span></span></li>
-
-            <li v-for="pageNumber in episodesGridData.pages" @click="onPageChange(pageNumber++)"
-              :class="pageNumber == episodesGridData.currentPage ? 'ko-pagination__current' : ''">
-
-              <span v-if="pageNumber == episodesGridData.currentPage" class="ku-show-sr">You're on
-                page</span>
-
-              <a v-if="pageNumber != episodesGridData.currentPage" href="javascript:void(0)"
-                aria-label="Page 2">{{pageNumber}}</a>
-
-              {{pageNumber==episodesGridData.currentPage?pageNumber:''}}
+            <li class="ko-pagination__prev" :class="{ 'is-disabled': prevDisabled }">
+              <a aria-label="Previous page" v-if="!prevDisabled"
+                @click="onPageChange(episodesGridData.currentPage -1)">Previous <span
+                  class="ku-show-sr">page</span>
+              </a>
+              <span v-if="prevDisabled">Previous <span class="ku-show-sr">page</span></span>
             </li>
-
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length !=
-              episodesGridData.currentPage" class="ko-pagination__next"><a
-                href="javascript:void(0)" aria-label="Next page"
-                @click="onPageChange(episodesGridData.currentPage +1)">Next<span
-                  class="ku-show-sr">page</span></a></li>
-
-            <li v-if="episodesGridData.pages && episodesGridData.pages.length ==
-              episodesGridData.currentPage" class="ko-pagination__next">
-              Next<span class="ku-show-sr">page</span></li>
+            <li v-for="pageNumber in episodesGridData.pages" :key="pageNumber" :class="{  'ko-pagination__current' : isCurrentPage(pageNumber) }">
+              <template v-if="isCurrentPage(pageNumber)">
+                <span class="ku-show-sr">You're on page</span> {{ pageNumber }}
+              </template>
+              <a v-else @click="onPageChange(pageNumber++)"
+                :aria-label="'Page ' + pageNumber">{{ pageNumber }}</a>
+            </li>
+            <li class="ko-pagination__next" :class="{ 'is-disabled': nextDisabled }">
+              <a aria-label="Next page" v-if="!nextDisabled"
+                @click="onPageChange(episodesGridData.currentPage +1)">Next <span
+                  class="ku-show-sr">page</span>
+              </a>
+              <span v-if="nextDisabled">Next <span class="ku-show-sr">page</span></span>
+            </li>
           </ul>
         </nav>
       </div>
@@ -117,26 +110,64 @@
     data() {
       return {
         viewByBtnToogle: false,
-        selectedViewType: 'Episodes',
+        selectedViewType: 'Series',
       };
     },
     computed: {
       episodesGridData() {
         return this.$store.getters.getEpisodesGridData
       },
+      showPager() {
+        return this.episodesGridData.pages && this.episodesGridData.pages.length > 1
+      },
+      prevDisabled() {
+        return this.episodesGridData.pages && this.episodesGridData.currentPage <= 1;
+      },
+      nextDisabled() {
+        return this.episodesGridData.pages && this.episodesGridData.pages.length <=
+              this.episodesGridData.currentPage
+      }
     },
     methods: {
 
       //get all episodes
       getAllEpisodes(currentPage) {
         return this.$store.dispatch('getAllEpisodes', {
-          currentPage: currentPage
+          currentPage: currentPage,
+          limit: 10
         })
       },
 
-      //on page change
+      //get All Series
+      getAllSeries(currentPage) {
+        return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+          isIncludeEpisodes: false,
+          currentPage: currentPage,
+          limit: 6
+        })
+      },
+      isCurrentPage(pageNumber)
+      {
+        return pageNumber == this.episodesGridData.currentPage
+      },
+      
+       //on page change
       onPageChange(currentPage) {
-        this.getAllEpisodes(currentPage);
+
+        if (this.selectedViewType === 'Episodes') {
+          return this.getAllEpisodes(currentPage);
+        }
+
+        if (this.selectedViewType === 'Series & episodes') {
+          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+            isIncludeEpisodes: true,
+            currentPage: currentPage,
+            limit: 4
+          })
+        } else {
+          return getAllSeries(currentPage)
+        }
+
       },
 
       //on Click View By Button
@@ -149,13 +180,11 @@
         if (this.selectedViewType === 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: true,
-            currentPage: currentPage
+            currentPage: currentPage,
+            limit: 4
           })
         } else {
-          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
-            isIncludeEpisodes: false,
-            currentPage: currentPage
-          })
+          return getAllSeries(currentPage)
         }
 
       },
@@ -167,21 +196,25 @@
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
           return this.$store.dispatch('getAllEpisodes', {
-            currentPage: 1
+            currentPage: 1,
+            limit: 10
           })
         }
         if (selectedViewType == 'Series & episodes') {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: true,
-            currentPage: 1
+            currentPage: 1,
+            limit: 4
           })
         } else {
           return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
             isIncludeEpisodes: false,
-            currentPage: 1
+            currentPage: 1,
+            limit: 6
           })
         }
-      }
+      },
+
     },
     beforeMount() {
       if (localStorage.getItem("selectedViewType") !== null &&
@@ -196,6 +229,14 @@
         document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
       }
     },
+
+    created() {
+      this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {
+        this.selectedViewType = selectedViewType;
+        return this.getAllEpisodes(1);
+      });
+    },
+
     components: {
       EpisodeItem,
       SeriesCard,
