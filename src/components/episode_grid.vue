@@ -159,7 +159,6 @@
 
       },
 
-
       //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
         this.viewByBtnToogle = false;
@@ -184,6 +183,11 @@
     },
     beforeMount() {
       this.getAllEpisodes(1);
+    },
+    created() {
+      if (this.$route.params.isGridShow) {
+        alert("yes");
+      }
     },
     components: {
       EpisodeItem,
