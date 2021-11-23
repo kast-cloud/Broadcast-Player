@@ -4,8 +4,8 @@
       <PodcastInfo></PodcastInfo>
       <div class="kl-broadcast-detail">
         <div class="kl-broadcast-detail__hdr">
-          <a href="episodes.html#list" class="ko-back"><i class="ki-chevron-alt-left"></i>Back to
-            list</a>
+          <router-link to="/" class="ko-back"><i class="ki-chevron-alt-left"></i>Back to
+            list</router-link>
         </div>
         <EpisodeDetailAside v-bind:episodeDetail="episodeDetail"></EpisodeDetailAside>
         <div class="kl-broadcast-detail__line"></div>
@@ -37,6 +37,12 @@
     },
     beforeMount() {
       this.getEpisodeDetail();
+    },
+    watch: {
+      '$route.params.id'(newId, oldId) {
+        debugger
+        this.getEpisodeDetail();
+      }
     },
     components: {
       PodcastInfo,

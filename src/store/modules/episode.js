@@ -132,7 +132,7 @@ const mutations = {
     state.latestSeries = latestSeries;
     //add sort by released Utc date 
     state.latestSeries.episodes.sort((firstDate, secondDate) => {
-      return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
+      return new Date(firstDate.releasedLocal) - new Date(secondDate.releasedLocal);
     });
   },
 
