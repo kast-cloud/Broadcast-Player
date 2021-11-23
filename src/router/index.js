@@ -12,7 +12,7 @@ const routes = [{
     component: Episode,
   },
   {
-    path: '/episodeDetail/:id',
+    path: '/episode/:id',
     name: 'episodeDetail',
     component: EpisodeDetail,
   }
