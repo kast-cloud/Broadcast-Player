@@ -46,7 +46,7 @@
       EpisodeLatestList,
       EpisodeLatestSeries,
       EpisodeGrid
-    }
+    },
   };
 
 </script>

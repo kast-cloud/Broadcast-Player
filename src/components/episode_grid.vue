@@ -150,8 +150,28 @@
       {
         return pageNumber == this.episodesGridData.currentPage
       },
-      //on page change
+      
+       //on page change
       onPageChange(currentPage) {
+
+        if (this.selectedViewType === 'Episodes') {
+          return this.getAllEpisodes(currentPage);
+        }
+
+        if (this.selectedViewType === 'Series & episodes') {
+          return this.$store.dispatch('getAllSeriesByIncludeEpisodes', {
+            isIncludeEpisodes: true,
+            currentPage: currentPage,
+            limit: 4
+          })
+        } else {
+          return getAllSeries(currentPage)
+        }
+
+      },
+
+      //on Click View By Button
+      onClickViewByButton() {
 
         if (this.selectedViewType === 'Episodes') {
           return this.getAllEpisodes(currentPage);
@@ -171,6 +191,7 @@
 
       //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
+        localStorage.setItem("selectedViewType", selectedViewType);
         this.viewByBtnToogle = false;
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
@@ -196,7 +217,17 @@
 
     },
     beforeMount() {
-      this.getAllSeries(1);
+      if (localStorage.getItem("selectedViewType") !== null &&
+        localStorage.getItem("selectedViewType") !== "" && this.$route.params.isGridShow &&
+        this.$route.params.isGridShow == true) {
+        this.selectedViewType = localStorage.getItem("selectedViewType");
+      }
+      this.onChangeViewByDdl(this.selectedViewType);
+    },
+    mounted() {
+      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      }
     },
 
     created() {

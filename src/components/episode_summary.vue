@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="kc-episode-sum">
+  <router-link :to="{ name: 'episodeDetail', params: { id: episode.id }}" class="kc-episode-sum">
     <article class="kc-episode-sum__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-sum__img-wrp">
         <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.title"
@@ -11,10 +11,10 @@
           <div class="kc-episode-sum__released">
             <dt>Recorded</dt>
             <dd>
-              <time class="ko-datetime" :datetime="episode.releasedUtc">
-                {{ episode.releasedUtc | moment("ddd Do MMM, YYYY") }}
+              <time class="ko-datetime">
+                {{ episode.releasedLocal | moment("ddd Do MMM, YYYY") }}
                 <span class="kl-dt-separator">{{
-                  episode.releasedUtc | moment("h:mm a")
+                  episode.releasedLocal | moment("h:mm a")
                 }}</span></time>
             </dd>
           </div>
@@ -41,7 +41,7 @@
         </dl>
       </div>
     </article>
-  </a>
+  </router-link>
 </template>
 
 <script>

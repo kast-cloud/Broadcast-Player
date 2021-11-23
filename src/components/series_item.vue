@@ -58,11 +58,9 @@
             <span v-if="episode.author">- {{ episode.author }}</span>
           </td>
           <td class="ko-episode-tbl__date">
-            <time class="ko-datetime" :datetime="episode.releasedUtc">
-              {{ episode.releasedUtc | moment("ddd Do MMM, YYYY") }}
-              <span class="kl-dt-separator">{{
-                episode.releasedUtc | moment("h:mm a")
-              }}</span>
+            <time class="ko-datetime">
+              {{episode.releasedLocal | moment("ddd Do MMM, YYYY")}} <span
+                class="kl-dt-separator">{{episode.releasedLocal | moment("h:mm a")}}</span>
             </time>
           </td>
           <td class="ko-episode-tbl__time">

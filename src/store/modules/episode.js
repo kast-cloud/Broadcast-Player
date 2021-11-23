@@ -1,11 +1,15 @@
 import {
-  episodeService
+  episodeService,
+  seriesService
 } from '../../services'
 
 const state = {
   broadcastInfo: [],
   latestEpisodes: [],
   latestSeries: [],
+  episodesList: [],
+  episodeDetail: [],
+  seriesDetail: [],
   episodesGridData: []
 };
 
@@ -19,10 +23,20 @@ const getters = {
   latestSeries() {
     return state.latestSeries;
   },
+  allEpisodes() {
+    return state.episodesList;
+  },
+  episodeDetail() {
+    return state.episodeDetail;
+  },
+  getSeriesDetail() {
+    return state.seriesDetail;
+  },
   getEpisodesGridData() {
     return state.episodesGridData;
   }
-};
+}
+
 
 const actions = {
   //get Broadcast Info
@@ -78,7 +92,30 @@ const actions = {
         episodesGridListData => commit('setEpisodesGridDataSuccess', episodesGridListData),
         error => commit('getAllFailure', error)
       );
-  }
+  },
+
+  //get By Id
+  getById({
+    commit
+  }, payload) {
+    episodeService.getById(payload.id)
+      .then(
+        episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
+        error => commit('getAllFailure', error)
+      );
+  },
+
+  //get Series detail By Id
+  getSeriesDetailById({
+    commit
+  }, payload) {
+    seriesService.getById(payload.id)
+      .then(
+        seriesDetail => commit('setSeriesDetailSuccess', seriesDetail),
+        error => commit('getAllFailure', error)
+      );
+  },
+
 };
 
 const mutations = {
@@ -95,7 +132,7 @@ const mutations = {
     state.latestSeries = latestSeries;
     //add sort by released Utc date 
     state.latestSeries.episodes.sort((firstDate, secondDate) => {
-      return new Date(firstDate.releasedUtc) - new Date(secondDate.releasedUtc);
+      return new Date(firstDate.releasedLocal) - new Date(secondDate.releasedLocal);
     });
   },
 
@@ -108,6 +145,14 @@ const mutations = {
     }
     episodesGridListData.pages = pages;
     state.episodesGridData = episodesGridListData;
+  },
+
+  setEpisodeDetailSuccess(state, episodeDetail) {
+    state.episodeDetail = episodeDetail;
+  },
+
+  setSeriesDetailSuccess(state, seriesDetail) {
+    state.seriesDetail = seriesDetail;
   },
 
   getAllFailure(state, error) {

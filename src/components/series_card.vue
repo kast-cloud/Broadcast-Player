@@ -41,4 +41,5 @@
     name: 'SeriesCard',
     props: ["series"],
   };
+
 </script>

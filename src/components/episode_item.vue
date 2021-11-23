@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="kc-episode-item">
+  <router-link :to="{ name: 'episodeDetail', params: { id: episode.id }}" class="kc-episode-item">
     <article class="kc-episode-item__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-item__img-wrp">
         <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.artworkAltText"
@@ -22,18 +22,19 @@
         <div class="kc-episode-item__released">
           <dt>Recorded</dt>
           <dd>
-            <time class="ko-datetime" :datetime="episode.releasedUtc">
-              {{ episode.releasedUtc | moment("ddd Do MMM, YYYY") }}
+            <time class="ko-datetime">
+              {{ episode.releasedLocal | moment("ddd Do MMM, YYYY") }}
               <span class="kl-dt-separator">{{
-                episode.releasedUtc | moment("h:mm a")
+                episode.releasedLocal | moment("h:mm a")
               }}</span></time>
           </dd>
         </div>
         <div v-if="episode.location" class="kc-episode-item__location">
           <dt>Location</dt>
           <dd>
-            <span class="ko-badge ko-badge--location">
-              {{ episode.location.title }}</span>
+            <span class="ko-badge ko-badge--location">{{
+              episode.location.title
+            }}</span>
           </dd>
         </div>
         <div v-if="episode.duration" class="kc-episode-item__duration">
@@ -48,7 +49,7 @@
           </div> -->
       </dl>
     </article>
-  </a>
+  </router-link>
 </template>
 
 <script>

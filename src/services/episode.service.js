@@ -4,6 +4,7 @@ export const episodeService = {
   getLatestEpisodes,
   getLatestSeries,
   getAllEpisodes,
+  getById,
   getAllSeriesByIncludeEpisodes
 };
 
@@ -44,6 +45,15 @@ function getLatestSeries() {
   return fetch(config.apiInfo.baseUrl + '/api/broadcast/broadcasts/' + config.apiInfo.broadcastId +
     '/series/latest',
     requestOptions).then(handleResponse);
+}
+
+// get By Id
+function getById(id) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/episodes/' + id, requestOptions).then(
+    handleResponse);
 }
 
 // get All Series By Include Episodes
