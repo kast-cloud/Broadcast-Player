@@ -71,14 +71,13 @@
           id: id
         })
       },
-      getSeriesId() {
-        if (this.episodeDetail.series) return this.episodeDetail.series.id;
-        else return null
-      },
-
     },
-    created() {
-      this.getSeriesDetailById(this.getSeriesId());
+    beforeUpdate() {
+      debugger
+      var data = this.$store.getters.episodeDetail;
+      if (this.$store.getters.episodeDetail.series) {
+        this.getSeriesDetailById(this.$store.getters.episodeDetail.series.id);
+      }
     },
     components: {
       EpisodeSummary,

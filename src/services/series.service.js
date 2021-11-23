@@ -8,7 +8,7 @@ function getById(id) {
   const requestOptions = {
     method: 'GET',
   };
-  return fetch(config.apiInfo.baseUrl + '/api/broadcast/series/4dwszmsf03qg2wn78z1w3trqn8',
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/series/'+ id,
     requestOptions).then(handleResponse);
 }
 
