@@ -139,6 +139,7 @@
         this.getAllEpisodes(currentPage);
       },
 
+      //on Click View By Button
       onClickViewByButton() {
 
         if (this.selectedViewType === 'Episodes') {
