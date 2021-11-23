@@ -12,11 +12,6 @@ const routes = [{
     component: Episode,
   },
   {
-    path: '/Episode',
-    name: 'episode',
-    component: Episode,
-  },
-  {
     path: '/episodeDetail/:id',
     name: 'episodeDetail',
     component: EpisodeDetail,
