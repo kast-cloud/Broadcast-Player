@@ -86,7 +86,7 @@
               </dl>
             </article>
           </router-link>
-          </li>
+        </li>
       </ul>
     </div>
   </article>
@@ -110,6 +110,9 @@
     beforeMount() {
       this.getSeriesDetail();
     },
+    mounted() {
+      document.title = this.seriesDetail.title;
+    }
   };
 
 </script>

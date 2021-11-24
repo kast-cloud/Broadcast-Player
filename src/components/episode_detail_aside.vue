@@ -27,9 +27,11 @@
         </ul>
       </div>
       <div class="kc-wdg__sec--ftr">
-        <a href="episodes.html#list" class="ko-more">View all episodes<i
-            class="ki-chevron-alt-right"></i></a>
+        <a href="javascript:void(0)" @click="onClickViewAllEpisodeBtn()" class="ko-more">View
+          all
+          episodes<i class="ki-chevron-alt-right"></i></a>
       </div>
+
     </div>
     <EpisodeLatestList v-else></EpisodeLatestList>
     <SubscribeForm></SubscribeForm>
@@ -55,6 +57,10 @@
           id: id
         })
       },
+      //on Click View All episode Btn
+      onClickViewAllEpisodeBtn() {
+        this.$eventHub.$emit('onClickViewAllEpisodeBtn', 'Episodes');
+      }
     },
     beforeUpdate() {
       if (this.$store.getters.getEpisodeDetail.series) {
