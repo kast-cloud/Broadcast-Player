@@ -224,11 +224,7 @@
       }
       this.onChangeViewByDdl(this.selectedViewType);
     },
-    mounted() {
-      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
-        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
-      }
-    },
+   
 
     created() {
       this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {

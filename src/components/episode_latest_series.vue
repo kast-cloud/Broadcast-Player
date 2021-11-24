@@ -33,7 +33,8 @@
               </div> -->
             </dl>
             <p>{{latestSeries.summary}}</p>
-            <a href="#" class="ko-more">Learn more<i class="ki-chevron-alt-right"></i></a>
+            <router-link :to="{ name: 'seriesDetail', params: { id: latestSeries.id }}"
+              class="ko-more">Learn more<i class="ki-chevron-alt-right"></i></router-link>
           </div>
         </header>
         <div class="kc-series-item__bdy">

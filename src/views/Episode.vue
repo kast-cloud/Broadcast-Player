@@ -47,6 +47,12 @@
       EpisodeLatestSeries,
       EpisodeGrid
     },
+    mounted() {
+      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
+        debugger
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      }
+    },
   };
 
 </script>
