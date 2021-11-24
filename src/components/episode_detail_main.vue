@@ -77,8 +77,7 @@
             class="ko-toolbar__txt">Download</span></a>
       </div>
       <div class="kc-episode__bdy">
-        <p>{{episodeDetail.content}}
-        </p>
+        <p v-html:bind="episodeDetail.content"></p>
         <ul class="kc-episode__notes">
           <li v-for="attachment in episodeDetail.attachments"><a v-bind:href="attachment.url"><i
                 class="ki-download"></i>{{attachment.title}}</a></li>

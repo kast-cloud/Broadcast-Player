@@ -1,7 +1,6 @@
 <template>
   <div class="kl-episodes__series">
     <div class="kc-wdg--latest-series">
-
       <h2 class="kc-wdg__hdg">Latest series</h2>
       <article class="kc-series-item">
         <header class="kc-series-item__hdr">
@@ -59,8 +58,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(episode, index) in latestSeries.episodes" onclick="location.href='#'"
-                v-bind:key="episode.id">
+              <tr v-for="(episode, index) in latestSeries.episodes"
+                @click="goToEpisodeDetailPage(episode.id)" v-bind:key="episode.id">
                 <td class="ko-episode-tbl__num">
                   {{index | formatNumber}}
                 </td>
@@ -87,47 +86,34 @@
           <a href="#" class="ko-more">View full series <i class="ki-chevron-alt-right"></i></a>
         </div>
       </article>
-
-
-      
-      <div class="kc-wdg__sec--hdr">
-        <h2 class="kc-wdg__hdg">Latest series</h2>
-      </div>
-      <div class="kc-wdg__sec--bdy">
-        <SeriesItem v-bind:series="latestSeries"></SeriesItem>
-      </div>
-      <div class="kc-wdg__sec--ftr">
-        <a href="#" class="ko-more">
-          View full series <i class="ki-chevron-alt-right"></i>
-        </a>
-      </div>
-
-
-
     </div>
   </div>
 </template>
 
 <script>
-import SeriesItem from "@/components/series_item.vue";
+  import SeriesItem from "@/components/series_item.vue";
 
-export default {
-  name: "EpisodeLatestSeries",
-  computed: {
-    latestSeries() {
-      return this.$store.getters.latestSeries;
+  export default {
+    name: "EpisodeLatestSeries",
+    computed: {
+      latestSeries() {
+        return this.$store.getters.latestSeries;
+      },
     },
-  },
-  methods: {
-    getLatestSeries() {
-      return this.$store.dispatch("getLatestSeries");
+    methods: {
+      getLatestSeries() {
+        return this.$store.dispatch("getLatestSeries");
+      },
+      goToEpisodeDetailPage(episodeId) {
+        this.$router.push('episode/' + episodeId);
+      }
     },
-  },
-  beforeMount() {
-    this.getLatestSeries();
-  },
-  components: {
-    SeriesItem,
-  },
-};
+    beforeMount() {
+      this.getLatestSeries();
+    },
+    components: {
+      SeriesItem,
+    },
+  };
+
 </script>

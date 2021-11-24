@@ -2,11 +2,8 @@
   <article class="kc-series-item">
     <header class="kc-series-item__hdr">
       <div class="kc-series-item__img-wrp" v-if="series.artworkUrlLrg">
-        <img
-          v-bind:src="series.artworkUrlLrg"
-          v-bind:alt="series.artworkAltText"
-          class="kc-series-item__img"
-        />
+        <img v-bind:src="series.artworkUrlLrg" v-bind:alt="series.artworkAltText"
+          class="kc-series-item__img" />
       </div>
       <div class="kc-series-item__txt">
         <h1 class="kc-series-item__title">{{ series.title }}</h1>
@@ -33,9 +30,8 @@
           </div> -->
         </dl>
         <p>{{ series.summary }}</p>
-        <a href="javascript:void(0)" class="ko-more"
-          >Learn more<i class="ki-chevron-alt-right"></i
-        ></a>
+        <a href="javascript:void(0)" class="ko-more">Learn more<i
+            class="ki-chevron-alt-right"></i></a>
       </div>
     </header>
     <table class="ko-episode-tbl">
@@ -49,7 +45,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(episode, index) in sortedEpisodes" v-bind:key="episode.id">
+        <tr v-for="(episode, index) in sortedEpisodes" @click="goToEpisodeDetailPage(episode.id)">
           <td class="ko-episode-tbl__num">
             {{ index | formatNumber }}
           </td>
@@ -77,17 +73,24 @@
 </template>
 
 <script>
-export default {
-  name: "SeriesItem",
-  props: ["series"],
-  computed: {
-    sortedEpisodes() {
-      if (this.series.episodes) {
-        return this.series.episodes.sort(
-          (a, b) => new Date(a.releasedUtc) - new Date(b.releasedUtc)
-        );
+  export default {
+    name: "SeriesItem",
+    props: ["series"],
+    computed: {
+      sortedEpisodes() {
+        if (this.series.episodes) {
+          return this.series.episodes.sort(
+            (a, b) => new Date(a.releasedUtc) - new Date(b.releasedUtc)
+          );
+        }
+      },
+    },
+    methods: {
+      goToEpisodeDetailPage(episodeId) {
+        this.$router.push('episode/' + episodeId);
       }
     },
-  },
-};
+
+  };
+
 </script>
