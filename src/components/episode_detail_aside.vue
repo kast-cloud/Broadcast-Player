@@ -32,31 +32,15 @@
       </div>
     </div>
     <EpisodeLatestList v-else></EpisodeLatestList>
-    <div class="kc-subscribe">
-      <div class="kc-subscribe__cell">
-        <h3 class="kc-subscribe__hdg">Subscribe to new episodes</h3>
-      </div>
-      <div class="kc-subscribe__cell">
-        <label class="ko-label ku-show-sr ko-label--error ko-label--required">First name</label>
-        <input type="text" class="ko-input ko-input--error" placeholder="First name" required="">
-        <!-- <div class="ko-validation">
-                                First name is required.
-                            </div> -->
-      </div>
-      <div class="kc-subscribe__cell">
-        <label class="ko-label ku-show-sr ko-label--required">Email address</label>
-        <input type="email" class="ko-input" placeholder="Email address" required="">
-      </div>
-      <div class="kc-subscribe__cell">
-        <button type="button" class="ko-button ko-button--form">Subscribe</button>
-      </div>
-    </div>
+    <SubscribeForm></SubscribeForm>
   </aside>
 </template>
 
 <script>
   import EpisodeSummary from '@/components/episode_summary.vue';
   import EpisodeLatestList from '@/components/episode_latest_list.vue';
+  import SubscribeForm from '@/components/subscribe_form.vue';
+
   export default {
     name: 'EpisodeDetailAside',
     props: ["episodeDetail"],
@@ -73,15 +57,14 @@
       },
     },
     beforeUpdate() {
-      debugger
-      var data = this.$store.getters.episodeDetail;
-      if (this.$store.getters.episodeDetail.series) {
-        this.getSeriesDetailById(this.$store.getters.episodeDetail.series.id);
+      if (this.$store.getters.getEpisodeDetail.series) {
+        this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
       }
     },
     components: {
       EpisodeSummary,
-      EpisodeLatestList
+      EpisodeLatestList,
+      SubscribeForm
     }
   };
 

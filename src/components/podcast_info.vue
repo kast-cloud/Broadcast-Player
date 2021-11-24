@@ -40,7 +40,7 @@
     },
     methods: {
       getBroadcastInfo() {
-        return this.$store.dispatch('getBroadcastInfo')
+        return this.$store.dispatch('getBroadcastInfo' , {root:true})
       },
 
     },

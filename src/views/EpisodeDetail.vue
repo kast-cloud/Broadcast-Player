@@ -26,7 +26,7 @@
     name: 'EpisodeDetail',
     computed: {
       episodeDetail() {
-        return this.$store.getters.episodeDetail
+        return this.$store.getters.getEpisodeDetail
       }
     },
     methods: {
