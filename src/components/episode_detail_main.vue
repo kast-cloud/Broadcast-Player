@@ -2,7 +2,7 @@
   <div class="kl-broadcast-detail__main">
     <article class="kc-episode">
       <header class="kc-episode__hdr">
-        <div class="kc-episode__img-wrp">
+        <div class="kc-episode__img-wrp" v-if="episodeDetail.artworkUrlSml">
           <img v-bind:src="episodeDetail.artworkUrlSml" v-bind:alt="episodeDetail.artworkAltText"
             class="kc-episode__img">
         </div>
@@ -41,12 +41,12 @@
               <i class="ki-clock"></i> {{episodeDetail.duration | convertSecondsToHoursMinutes}}
             </dd>
           </div>
-          <div class="kc-episode__done kc-episode__done--false">
+          <!-- <div class="kc-episode__done kc-episode__done--false">
             <dt>Listened</dt>
             <dd>
               <i class="ki-headphones"></i><span class="ku-show-sr">false</span>
             </dd>
-          </div>
+          </div> -->
         </dl>
       </header>
       <div class="kc-series__media">
