@@ -31,7 +31,6 @@
           all
           episodes<i class="ki-chevron-alt-right"></i></a>
       </div>
-
     </div>
     <EpisodeLatestList v-else></EpisodeLatestList>
     <SubscribeForm></SubscribeForm>
@@ -70,6 +69,7 @@
         const releasedLocalDate = new Date(this.episodeDetail.releasedLocal);
         document.title = this.episodeDetail.title + " - " + releasedLocalDate;
       }
+      //this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
     },
     components: {
       EpisodeSummary,
