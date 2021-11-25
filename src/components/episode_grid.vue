@@ -214,29 +214,23 @@
 
     },
     beforeMount() {
-      debugger
       if (this.$route.params.viewGridType) {
         this.selectedViewType = this.$route.params.viewGridType;
       }
       this.onChangeViewByDdl(this.selectedViewType);
-    },
-    mounted() {
-      debugger
-      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
-        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
-      } else {
-        document.getElementById('app').scrollIntoView();
-      }
     },
     created() {
       this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {
         this.selectedViewType = selectedViewType;
         return this.getAllEpisodes(1);
       });
-      this.$eventHub.$on('onClickViewAllSeriesBtn', selectedViewType => {
-        this.selectedViewType = selectedViewType;
-        return this.getAllSeries(1);
-      });
+    },
+    mounted() {
+      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      } else {
+        document.getElementById('app').scrollIntoView();
+      }
     },
     components: {
       EpisodeItem,
