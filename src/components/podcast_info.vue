@@ -40,13 +40,18 @@
     },
     methods: {
       getBroadcastInfo() {
-        return this.$store.dispatch('getBroadcastInfo')
+        return this.$store.dispatch('getBroadcastInfo', {
+          root: true
+        })
       },
 
     },
     beforeMount() {
       this.getBroadcastInfo()
     },
+    mounted() {
+      document.title = this.podcastInfo.title;
+    }
   };
 
 </script>

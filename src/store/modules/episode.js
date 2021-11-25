@@ -26,7 +26,7 @@ const getters = {
   allEpisodes() {
     return state.episodesList;
   },
-  episodeDetail() {
+  getEpisodeDetail() {
     return state.episodeDetail;
   },
   getSeriesDetail() {

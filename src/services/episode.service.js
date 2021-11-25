@@ -39,6 +39,7 @@ function getAllEpisodes(payload) {
 
 // get Latest Series
 function getLatestSeries() {
+  debugger
   const requestOptions = {
     method: 'GET',
   };
