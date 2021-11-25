@@ -50,6 +50,8 @@
     mounted() {
       if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
         document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      } else {
+        document.getElementById('app').scrollIntoView();
       }
     },
   };

@@ -189,7 +189,6 @@
 
       //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
-        localStorage.setItem("selectedViewType", selectedViewType);
         this.viewByBtnToogle = false;
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
@@ -215,16 +214,18 @@
 
     },
     beforeMount() {
-      if (localStorage.getItem("selectedViewType") !== null &&
-        localStorage.getItem("selectedViewType") !== "" && this.$route.params.isGridShow &&
-        this.$route.params.isGridShow == true) {
-        this.selectedViewType = localStorage.getItem("selectedViewType");
+      debugger
+      if (this.$route.params.viewGridType) {
+        this.selectedViewType = this.$route.params.viewGridType;
       }
       this.onChangeViewByDdl(this.selectedViewType);
     },
     mounted() {
+      debugger
       if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
         document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      } else {
+        document.getElementById('app').scrollIntoView();
       }
     },
     created() {

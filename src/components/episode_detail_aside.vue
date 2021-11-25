@@ -11,8 +11,9 @@
         <div class="kc-series-card__sum">
           <p>{{seriesDetail.summary}}</p>
         </div>
-        <a href="javascript:void(0)" @click="onClickViewAllSeriesBtn()" class="ko-more">View
-          series<i class="ki-chevron-alt-right"></i></a>
+        <router-link :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Series'}}"
+          class="ko-more">View
+          series<i class="ki-chevron-alt-right"></i></router-link>
       </div>
     </article>
     <div class="kc-wdg--series-episodes" v-if="episodeDetail.series">
@@ -27,9 +28,10 @@
         </ul>
       </div>
       <div class="kc-wdg__sec--ftr">
-        <a href="javascript:void(0)" @click="onClickViewAllEpisodeBtn()" class="ko-more">View
+        <router-link :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Episodes' }}"
+          class="ko-more">View
           all
-          episodes<i class="ki-chevron-alt-right"></i></a>
+          episodes<i class="ki-chevron-alt-right"></i></router-link>
       </div>
     </div>
     <EpisodeLatestList v-else></EpisodeLatestList>
@@ -62,6 +64,7 @@
       },
 
       onClickViewAllSeriesBtn() {
+
         this.$eventHub.$emit('onClickViewAllSeriesBtn', 'Series');
       }
     },

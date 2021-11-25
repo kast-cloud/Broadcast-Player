@@ -26,10 +26,7 @@ const routes = [{
 
 
 const router = new VueRouter({
-  routes,
-  scrollBehavior() {
-      document.getElementById('app').scrollIntoView();
-  }
+  routes
 });
 
 export default router;
