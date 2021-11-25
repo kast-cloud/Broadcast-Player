@@ -2,7 +2,7 @@
   <aside class="kl-broadcast-detail__aside">
     <article class="kc-series-card" v-if="episodeDetail.series">
       <a href="javascript:void(0)" class="kc-series-card__img-wrp">
-        <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.title"
+        <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.artworkAltText"
           class="kc-series-card__img">
       </a>
       <div class="kc-series-card__txt">
@@ -11,8 +11,8 @@
         <div class="kc-series-card__sum">
           <p>{{seriesDetail.summary}}</p>
         </div>
-        <a href="javascript:void(0)" class="ko-more">View series<i
-            class="ki-chevron-alt-right"></i></a>
+        <a href="javascript:void(0)" @click="onClickViewAllSeriesBtn()" class="ko-more">View
+          series<i class="ki-chevron-alt-right"></i></a>
       </div>
     </article>
     <div class="kc-wdg--series-episodes" v-if="episodeDetail.series">
@@ -59,6 +59,10 @@
       //on Click View All episode Btn
       onClickViewAllEpisodeBtn() {
         this.$eventHub.$emit('onClickViewAllEpisodeBtn', 'Episodes');
+      },
+
+      onClickViewAllSeriesBtn() {
+        this.$eventHub.$emit('onClickViewAllSeriesBtn', 'Series');
       }
     },
     beforeUpdate() {

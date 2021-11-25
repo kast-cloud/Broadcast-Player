@@ -227,7 +227,6 @@
         document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
       }
     },
-
     created() {
       this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {
         this.selectedViewType = selectedViewType;
@@ -238,7 +237,6 @@
         return this.getAllSeries(1);
       });
     },
-
     components: {
       EpisodeItem,
       SeriesCard,

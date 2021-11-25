@@ -30,19 +30,14 @@
       }
     },
     methods: {
-      getEpisodeDetail() {
+      getEpisodeDetailById(id) {
         return this.$store.dispatch('getById', {
-          id: window.location.href.split('/').at(-1)
+          id: id
         })
       },
     },
     beforeMount() {
-      this.getEpisodeDetail();
-    },
-    watch: {
-      '$route.params.id'(newId, oldId) {
-        this.getEpisodeDetail();
-      }
+      this.getEpisodeDetailById(window.location.href.split('/').at(-1));
     },
     components: {
       PodcastInfo,
