@@ -66,6 +66,10 @@
       if (this.$store.getters.getEpisodeDetail.series) {
         this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
       }
+      if (this.$router.currentRoute.name === 'episodeDetail') {
+        const releasedLocalDate = new Date(this.episodeDetail.releasedLocal);
+        document.title = this.episodeDetail.title + " - " + releasedLocalDate;
+      }
     },
     components: {
       EpisodeSummary,

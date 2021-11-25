@@ -2,7 +2,8 @@
   <article class="kc-series">
     <header class="kc-series__hdr">
       <div class="kc-series__img-wrp" v-if="seriesDetail.artworkUrlSml">
-        <img :src="seriesDetail.artworkUrlSml" :alt="seriesDetail.artworkAltText" class="kc-series__img" />
+        <img :src="seriesDetail.artworkUrlSml" :alt="seriesDetail.artworkAltText"
+          class="kc-series__img" />
       </div>
       <div class="kc-series__txt">
         <h1 class="kc-series__title">{{ seriesDetail.title }}</h1>
@@ -42,30 +43,34 @@
 </template>
 
 <script>
-import EpisodeItem from "@/components/episode_item.vue";
+  import EpisodeItem from "@/components/episode_item.vue";
 
-export default {
-  name: "BroadcastDetailMain",
-  computed: {
-    seriesDetail() {
-      return this.$store.getters.getSeriesDetail;
+  export default {
+    name: "BroadcastDetailMain",
+    computed: {
+      seriesDetail() {
+        return this.$store.getters.getSeriesDetail;
+      },
     },
-  },
-  methods: {
-    getSeriesDetail() {
-      return this.$store.dispatch("getSeriesDetailById", {
-        id: window.location.href.split("/").at(-1),
-      });
+    methods: {
+      getSeriesDetail() {
+        return this.$store.dispatch("getSeriesDetailById", {
+          id: window.location.href.split("/").at(-1),
+        });
+      },
     },
-  },
-  beforeMount() {
-    this.getSeriesDetail();
-  },
-  mounted() {
-    document.title = this.seriesDetail.title;
-  },
-  components: {
-    EpisodeItem,
-  },
-};
+    beforeMount() {
+      this.getSeriesDetail();
+
+    },
+    beforeUpdate() {
+      if (this.$router.currentRoute.name === 'seriesDetail') {
+        document.title = this.seriesDetail.title;
+      }
+    },
+    components: {
+      EpisodeItem,
+    },
+  };
+
 </script>

@@ -49,9 +49,6 @@
       EpisodeDetailAside,
       EpisodeDetailMain
     },
-    mounted() {
-    document.title = this.episodeDetail.title;
-    }
   };
 
 </script>

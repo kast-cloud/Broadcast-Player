@@ -36,22 +36,21 @@
     computed: {
       podcastInfo() {
         return this.$store.getters.podcastInfo
-      }
+      },
     },
     methods: {
       getBroadcastInfo() {
-        return this.$store.dispatch('getBroadcastInfo', {
-          root: true
-        })
+        return this.$store.dispatch('getBroadcastInfo')
       },
 
     },
     beforeMount() {
       this.getBroadcastInfo()
     },
-    mounted() {
-      document.title = this.podcastInfo.title;
+    beforeUpdate() {
+      if (this.$router.currentRoute.name === 'episode') {
+        document.title = this.podcastInfo.title;
+      }
     }
   };
-
 </script>
