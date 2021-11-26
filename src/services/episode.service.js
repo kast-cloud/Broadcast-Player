@@ -59,7 +59,6 @@ function getById(id) {
 
 // get By url Path
 function getByUrlPath(urlPath) {
-  debugger
   const requestOptions = {
     method: 'GET',
   };

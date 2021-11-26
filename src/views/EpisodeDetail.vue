@@ -32,7 +32,6 @@
     },
     methods: {
       getEpisodeDetailById(id) {
-        debugger
         return this.$store.dispatch('getById', {
           id: id
         })
