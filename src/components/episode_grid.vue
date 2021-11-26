@@ -69,8 +69,7 @@
           </li>
         </ul>
 
-        <nav aria-label="Pagination" class="ko-pagination"
-          v-if="showPager">
+        <nav aria-label="Pagination" class="ko-pagination" v-if="showPager">
           <ul class="ko-pagination__list">
             <li class="ko-pagination__prev" :class="{ 'is-disabled': prevDisabled }">
               <a aria-label="Previous page" v-if="!prevDisabled"
@@ -79,7 +78,8 @@
               </a>
               <span v-if="prevDisabled">Previous <span class="ku-show-sr">page</span></span>
             </li>
-            <li v-for="pageNumber in episodesGridData.pages" :key="pageNumber" :class="{  'ko-pagination__current' : isCurrentPage(pageNumber) }">
+            <li v-for="pageNumber in episodesGridData.pages" :key="pageNumber"
+              :class="{  'ko-pagination__current' : isCurrentPage(pageNumber) }">
               <template v-if="isCurrentPage(pageNumber)">
                 <span class="ku-show-sr">You're on page</span> {{ pageNumber }}
               </template>
@@ -125,7 +125,7 @@
       },
       nextDisabled() {
         return this.episodesGridData.pages && this.episodesGridData.pages.length <=
-              this.episodesGridData.currentPage
+          this.episodesGridData.currentPage
       }
     },
     methods: {
@@ -146,12 +146,10 @@
           limit: 6
         })
       },
-      isCurrentPage(pageNumber)
-      {
+      isCurrentPage(pageNumber) {
         return pageNumber == this.episodesGridData.currentPage
       },
-      
-       //on page change
+      //on page change
       onPageChange(currentPage) {
 
         if (this.selectedViewType === 'Episodes') {
@@ -191,7 +189,6 @@
 
       //on Change View By Ddl
       onChangeViewByDdl(selectedViewType) {
-        localStorage.setItem("selectedViewType", selectedViewType);
         this.viewByBtnToogle = false;
         this.selectedViewType = selectedViewType;
         if (selectedViewType == 'Episodes') {
@@ -217,26 +214,24 @@
 
     },
     beforeMount() {
-      if (localStorage.getItem("selectedViewType") !== null &&
-        localStorage.getItem("selectedViewType") !== "" && this.$route.params.isGridShow &&
-        this.$route.params.isGridShow == true) {
-        this.selectedViewType = localStorage.getItem("selectedViewType");
+      if (this.$route.params.viewGridType) {
+        this.selectedViewType = this.$route.params.viewGridType;
       }
       this.onChangeViewByDdl(this.selectedViewType);
     },
-    mounted() {
-      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
-        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
-      }
-    },
-
     created() {
       this.$eventHub.$on('onClickViewAllEpisodeBtn', selectedViewType => {
         this.selectedViewType = selectedViewType;
         return this.getAllEpisodes(1);
       });
     },
-
+    mounted() {
+      if (this.$route.params.isGridShow && this.$route.params.isGridShow == true) {
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
+      } else {
+        document.getElementById('app').scrollIntoView();
+      }
+    },
     components: {
       EpisodeItem,
       SeriesCard,

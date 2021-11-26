@@ -4,8 +4,9 @@
       <PodcastInfo></PodcastInfo>
       <div class="kl-broadcast-detail">
         <div class="kl-broadcast-detail__hdr">
-          <router-link :to="{ name: 'episode', params: { isGridShow: true }}" class="ko-back"><i
-              class="ki-chevron-alt-left"></i>Back to
+          <router-link
+            :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Episodes' }}"
+            class="ko-back"><i class="ki-chevron-alt-left"></i>Back to
             list</router-link>
         </div>
         <EpisodeDetailAside v-bind:episodeDetail="episodeDetail"></EpisodeDetailAside>
@@ -30,28 +31,23 @@
       }
     },
     methods: {
-      getEpisodeDetail() {
+      getEpisodeDetailById(id) {
         return this.$store.dispatch('getById', {
-          id: window.location.href.split('/').at(-1)
+          id: id
         })
       },
     },
     beforeMount() {
-      this.getEpisodeDetail();
+      this.getEpisodeDetailById(window.location.href.split('/').at(-1));
     },
-    watch: {
-      '$route.params.id'(newId, oldId) {
-        this.getEpisodeDetail();
-      }
+    mounted() {
+      document.getElementById('app').scrollIntoView();
     },
     components: {
       PodcastInfo,
       EpisodeDetailAside,
       EpisodeDetailMain
     },
-    mounted() {
-    document.title = this.episodeDetail.title;
-    }
   };
 
 </script>

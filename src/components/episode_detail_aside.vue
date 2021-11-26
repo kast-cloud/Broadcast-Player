@@ -2,7 +2,7 @@
   <aside class="kl-broadcast-detail__aside">
     <article class="kc-series-card" v-if="episodeDetail.series">
       <a href="javascript:void(0)" class="kc-series-card__img-wrp">
-        <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.title"
+        <img v-bind:src="seriesDetail.artworkUrlSml" v-bind:alt="seriesDetail.artworkAltText"
           class="kc-series-card__img">
       </a>
       <div class="kc-series-card__txt">
@@ -11,8 +11,9 @@
         <div class="kc-series-card__sum">
           <p>{{seriesDetail.summary}}</p>
         </div>
-        <a href="javascript:void(0)" class="ko-more">View series<i
-            class="ki-chevron-alt-right"></i></a>
+        <router-link :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Series'}}"
+          class="ko-more">View
+          series<i class="ki-chevron-alt-right"></i></router-link>
       </div>
     </article>
     <div class="kc-wdg--series-episodes" v-if="episodeDetail.series">
@@ -27,11 +28,11 @@
         </ul>
       </div>
       <div class="kc-wdg__sec--ftr">
-        <a href="javascript:void(0)" @click="onClickViewAllEpisodeBtn()" class="ko-more">View
+        <router-link :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Episodes' }}"
+          class="ko-more">View
           all
-          episodes<i class="ki-chevron-alt-right"></i></a>
+          episodes<i class="ki-chevron-alt-right"></i></router-link>
       </div>
-
     </div>
     <EpisodeLatestList v-else></EpisodeLatestList>
     <SubscribeForm></SubscribeForm>
@@ -60,12 +61,22 @@
       //on Click View All episode Btn
       onClickViewAllEpisodeBtn() {
         this.$eventHub.$emit('onClickViewAllEpisodeBtn', 'Episodes');
+      },
+
+      onClickViewAllSeriesBtn() {
+
+        this.$eventHub.$emit('onClickViewAllSeriesBtn', 'Series');
       }
     },
     beforeUpdate() {
       if (this.$store.getters.getEpisodeDetail.series) {
         this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
       }
+      if (this.$router.currentRoute.name === 'episodeDetail') {
+        const releasedLocalDate = new Date(this.episodeDetail.releasedLocal);
+        document.title = this.episodeDetail.title + " - " + releasedLocalDate;
+      }
+      //this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
     },
     components: {
       EpisodeSummary,

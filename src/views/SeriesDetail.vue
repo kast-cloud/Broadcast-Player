@@ -4,11 +4,12 @@
       <PodcastInfo></PodcastInfo>
       <div class="kl-broadcast-detail">
         <div class="kl-broadcast-detail__hdr">
-          <router-link :to="{ name: 'episode', params: { isGridShow: true }}" class="ko-back"><i
-              class="ki-chevron-alt-left"></i>Back to
+          <router-link
+            :to="{ name: 'episode', params: { isGridShow: true , viewGridType: 'Series'}}"
+            class="ko-back"><i class="ki-chevron-alt-left"></i>Back to
             list</router-link>
         </div>
-        
+
         <aside class="kl-broadcast-detail__aside">
           <SubscribeForm></SubscribeForm>
         </aside>
@@ -32,6 +33,9 @@
       PodcastInfo,
       SubscribeForm,
       BroadcastDetailMain
+    },
+    mounted() {
+      document.getElementById('app').scrollIntoView();
     },
   };
 

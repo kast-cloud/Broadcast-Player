@@ -84,7 +84,8 @@
           </table>
         </div>
         <div class="kc-series-item__ftr">
-          <a href="#" class="ko-more">View full series <i class="ki-chevron-alt-right"></i></a>
+          <a href="javascript:void(0)" @click="onClickViewAllSeriesBtn()" class="ko-more">View full
+            series<i class="ki-chevron-alt-right"></i></a>
         </div>
       </article>
     </div>
@@ -107,6 +108,10 @@
       },
       goToEpisodeDetailPage(episodeId) {
         this.$router.push('episode/' + episodeId);
+      },
+      onClickViewAllSeriesBtn() {
+        this.$eventHub.$emit('onClickViewAllSeriesBtn', 'Series');
+        document.getElementsByClassName("kl-episodes__all")[0].scrollIntoView();
       }
     },
     beforeMount() {

@@ -30,8 +30,8 @@
           </div> -->
         </dl>
         <p>{{ series.summary }}</p>
-        <a href="javascript:void(0)" class="ko-more">Learn more<i
-            class="ki-chevron-alt-right"></i></a>
+        <router-link :to="{ name: 'seriesDetail', params: { id: series.id }}" class="ko-more">Learn
+          more<i class="ki-chevron-alt-right"></i></router-link>
       </div>
     </header>
     <table class="ko-episode-tbl">
@@ -90,7 +90,6 @@
         this.$router.push('episode/' + episodeId);
       }
     },
-
   };
 
 </script>
