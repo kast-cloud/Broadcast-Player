@@ -54,8 +54,8 @@
     },
     methods: {
       getSeriesDetail() {
-        return this.$store.dispatch("getSeriesDetailById", {
-          id: window.location.href.split("/").at(-1),
+        return this.$store.dispatch("getSeriesDetailByUrlPath", {
+          urlPath: this.$route.params.urlPath,
         });
       },
     },

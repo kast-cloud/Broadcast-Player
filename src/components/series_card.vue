@@ -1,5 +1,6 @@
 <template>
-  <router-link :to="{ name: 'seriesDetail', params: { id: series.id }}" class="kc-series-card">
+  <router-link :to="{ name: 'seriesDetail', params: { id: series.id, urlPath:
+              series.urlPath }}" class="kc-series-card">
     <article class="kc-series-card__inner">
       <div class="kc-series-card__img-wrp" v-if="series.artworkUrlLrg">
         <img v-bind:src="series.artworkUrlLrg" v-bind:alt="series.artworkAltText"

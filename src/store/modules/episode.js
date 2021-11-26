@@ -105,11 +105,33 @@ const actions = {
       );
   },
 
+   //get By Url Path
+   getByUrlPath({
+     commit
+   }, payload) {
+     episodeService.getByUrlPath(payload.urlPath)
+       .then(
+         episodeDetail => commit('setEpisodeDetailSuccess', episodeDetail),
+         error => commit('getAllFailure', error)
+       );
+   },
+
   //get Series detail By Id
   getSeriesDetailById({
     commit
   }, payload) {
     seriesService.getById(payload.id)
+      .then(
+        seriesDetail => commit('setSeriesDetailSuccess', seriesDetail),
+        error => commit('getAllFailure', error)
+      );
+  },
+
+  //get Series detail By Url Path
+  getSeriesDetailByUrlPath({
+    commit
+  }, payload) {
+    seriesService.getByUrlPath(payload.urlPath)
       .then(
         seriesDetail => commit('setSeriesDetailSuccess', seriesDetail),
         error => commit('getAllFailure', error)

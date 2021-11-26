@@ -32,13 +32,14 @@
     },
     methods: {
       getEpisodeDetailById(id) {
+        debugger
         return this.$store.dispatch('getById', {
           id: id
         })
       },
     },
     beforeMount() {
-      this.getEpisodeDetailById(window.location.href.split('/').at(-1));
+      this.getEpisodeDetailById(this.$route.params.id);
     },
     mounted() {
       document.getElementById('app').scrollIntoView();
