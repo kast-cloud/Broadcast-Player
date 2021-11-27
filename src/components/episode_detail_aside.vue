@@ -74,9 +74,8 @@
       }
       if (this.$router.currentRoute.name === 'episodeDetail') {
         const releasedLocalDate = new Date(this.episodeDetail.releasedLocal);
-        document.title = this.episodeDetail.title + " - " + releasedLocalDate;
       }
-      //this.getSeriesDetailById(this.$store.getters.getEpisodeDetail.series.id);
+      document.title = this.episodeDetail.title + " - " + releasedLocalDate;
     },
     components: {
       EpisodeSummary,

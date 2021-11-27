@@ -30,7 +30,9 @@
           </div> -->
         </dl>
         <p>{{ series.summary }}</p>
-        <router-link :to="{ name: 'seriesDetail', params: { id: series.id }}" class="ko-more">Learn
+        <router-link
+          :to="{ name: 'seriesDetail', params: { id: series.id , urlPath: series.urlPath}}"
+          class="ko-more">Learn
           more<i class="ki-chevron-alt-right"></i></router-link>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import config from '../config.json';
 export const seriesService = {
-  getById
+  getById,
+  getByUrlPath
 };
 
 // get By Id
@@ -9,6 +10,15 @@ function getById(id) {
     method: 'GET',
   };
   return fetch(config.apiInfo.baseUrl + '/api/broadcast/series/'+ id,
+    requestOptions).then(handleResponse);
+}
+
+// get By Url Path
+function getByUrlPath(urlPath) {
+  const requestOptions = {
+    method: 'GET',
+  };
+  return fetch(config.apiInfo.baseUrl + '/api/broadcast/series?alias=' + urlPath,
     requestOptions).then(handleResponse);
 }
 

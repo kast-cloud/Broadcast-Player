@@ -1,5 +1,6 @@
 <template>
-  <router-link :to="{ name: 'episodeDetail', params: { id: episode.id }}" class="kc-episode-sum">
+  <router-link :to="{ name: 'episodeDetail', params: { id: episode.id , urlPath: episode.urlPath}}"
+    class="kc-episode-sum">
     <article class="kc-episode-sum__inner">
       <div v-if="episode.artworkUrlSml" class="kc-episode-sum__img-wrp">
         <img v-bind:src="episode.artworkUrlSml" v-bind:alt="episode.title"

@@ -151,7 +151,6 @@
       },
       //on page change
       onPageChange(currentPage) {
-
         if (this.selectedViewType === 'Episodes') {
           return this.getAllEpisodes(currentPage);
         }
@@ -163,7 +162,7 @@
             limit: 4
           })
         } else {
-          return getAllSeries(currentPage)
+          return this.getAllSeries(currentPage)
         }
 
       },

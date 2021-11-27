@@ -18,7 +18,7 @@ const routes = [{
     component: EpisodeDetail,
   },
   {
-    path: '/series/:id',
+    path: '/series?alias=:urlPath',
     name: 'seriesDetail',
     component: SeriesDetail,
   }
